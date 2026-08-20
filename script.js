@@ -394,22 +394,24 @@ const renderEntries = (contentType) => {
 	const displayedEntries = contentType === "project" ? entries.slice(0, visibleProjectCount) : entries;
 	displayedEntries.forEach((entry) => grid.appendChild(createCard({ ...entry, index: entry.originalIndex }, contentType)));
 	if (contentType === "project" && seeMoreProjectsButton) seeMoreProjectsButton.hidden = entries.length <= visibleProjectCount;
-	if (contentType === "certification" && entries.length) {
-		for (let copy = 0; copy < 4; copy += 1) {
-			entries.forEach((entry) => {
-				const duplicate = createCard({ ...entry, index: entry.originalIndex }, contentType);
-				duplicate.classList.add("carousel-clone");
-				duplicate.querySelector(".entry-actions")?.remove();
-				duplicate.setAttribute("aria-hidden", "true");
-				grid.appendChild(duplicate);
-			});
-		}
-		grid.scrollLeft = 0;
-	}
 	const hasStaticEntries = Boolean(grid.querySelector(".static-entry"));
 	grid.classList.toggle("is-empty", entries.length === 0 && !hasStaticEntries);
 	if (contentType === "certification") {
-		grid.classList.toggle("is-carousel", entries.length > 0);
+		grid.querySelectorAll(".carousel-clone").forEach((entry) => entry.remove());
+		const carouselEntries = [...grid.querySelectorAll(".certification-card")];
+		if (carouselEntries.length) {
+			for (let copy = 0; copy < 4; copy += 1) {
+				carouselEntries.forEach((entry) => {
+					const duplicate = entry.cloneNode(true);
+					duplicate.classList.add("carousel-clone");
+					duplicate.querySelector(".entry-actions")?.remove();
+					duplicate.setAttribute("aria-hidden", "true");
+					grid.appendChild(duplicate);
+				});
+			}
+			grid.scrollLeft = 0;
+		}
+		grid.classList.toggle("is-carousel", carouselEntries.length > 0);
 		grid.dispatchEvent(new Event("scroll"));
 	}
 	if (contentType === "project") grid.closest("section")?.classList.toggle("is-empty-section", entries.length === 0 && !hasStaticEntries);
