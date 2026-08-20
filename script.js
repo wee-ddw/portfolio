@@ -77,10 +77,10 @@ const hiddenBuiltInProjectsKey = "portfolio-hidden-built-in-projects";
 const aboutPhotosKey = "portfolio-about-photos";
 const ePortfolioImageMigrationKey = "portfolio-e-portfolio-dsa-image-updated";
 const defaultAboutPhotos = [
-	"assets/aboutme/20260318_074443.jpg",
-	"assets/aboutme/20260422_090819_459.jpg",
-	"assets/aboutme/20260513_172033.jpg",
-	"assets/aboutme/FB_IMG_1722431886016.jpg"
+	"assets/aboutme/20260318_074443.png",
+	"assets/aboutme/20260422_090819_459.png",
+	"assets/aboutme/20260513_172033.png",
+	"assets/aboutme/FB_IMG_1722431886016.png"
 ];
 
 const hidePageLoader = () => {
