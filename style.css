@@ -1937,7 +1937,7 @@ html.light-theme body {
 
 .light-theme .three-scene {
     opacity: 0.9;
-    filter: grayscale(1);
+    filter: none;
 }
 
 .light-theme .hero-stats strong {

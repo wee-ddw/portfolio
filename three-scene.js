@@ -24,7 +24,7 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
     mount.appendChild(renderer.domElement);
 
     const group = new THREE.Group();
-    group.position.set(0.4, 0.05, 0);
+    group.position.set(0.4, 0.4, 0);
     scene.add(group);
 
     const raspberryPi = new THREE.Group();
@@ -129,7 +129,7 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
             particles.rotation.y = -seconds * 0.8 + pointer.x * 0.08;
             particles.rotation.x = pointer.y * 0.05;
             group.position.x += (pointer.x * 0.18 + 0.4 - group.position.x) * 0.025;
-            group.position.y += (pointer.y * -0.12 + 0.05 - group.position.y) * 0.025;
+            group.position.y += (pointer.y * -0.12 + 0.4 - group.position.y) * 0.025;
         }
         renderer.render(scene, camera);
         requestAnimationFrame(animate);
