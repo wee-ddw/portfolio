@@ -151,16 +151,26 @@ nav {
     color: #ef2029;
 }
 
-.theme-toggle {
+.nav-tools {
+    display: flex;
+    align-items: center;
+    gap: 12px;
     margin-left: 22px;
-    padding: 8px 12px;
+}
+
+.theme-toggle {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
     border: 1px solid #b45cff;
     border-radius: 999px;
     background: transparent;
     color: #fff;
     cursor: pointer;
     font: inherit;
-    font-size: 12px;
+    font-size: 19px;
     font-weight: 700;
     transition: background 0.25s, color 0.25s, border-color 0.25s;
 }
@@ -1936,9 +1946,8 @@ html.light-theme body {
 }
 
 @media (max-width: 900px) {
-    .theme-toggle {
+    .nav-tools {
         margin-left: auto;
-        margin-right: 12px;
     }
 }
 

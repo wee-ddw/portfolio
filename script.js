@@ -33,12 +33,16 @@ const removeAboutPhotoButton = document.querySelector("#remove-about-photo");
 const photoModal = document.querySelector("#photo-modal");
 const photoModalImage = document.querySelector("#photo-modal-image");
 const themeToggle = document.querySelector("#theme-toggle");
+const themeIcon = document.querySelector(".theme-icon");
 const isVisitorMode = document.documentElement.classList.contains("visitor-mode");
 
 const updateThemeToggle = () => {
 	if (!themeToggle) return;
 	const isLightTheme = document.documentElement.classList.contains("light-theme");
-	themeToggle.textContent = isLightTheme ? "Dark mode" : "Light mode";
+	const themeLabel = isLightTheme ? "Switch to dark mode" : "Switch to light mode";
+	if (themeIcon) themeIcon.textContent = isLightTheme ? "☾" : "☀";
+	themeToggle.setAttribute("aria-label", themeLabel);
+	themeToggle.title = themeLabel;
 	themeToggle.setAttribute("aria-pressed", String(isLightTheme));
 };
 
