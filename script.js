@@ -248,6 +248,28 @@ const cycleAboutPhotos = () => {
 	saveAboutPhotos([...remainingPhotos, topPhoto]);
 };
 
+const optimizeAboutPhoto = (file) => new Promise((resolve) => {
+	const source = URL.createObjectURL(file);
+	const image = new Image();
+	image.onload = () => {
+		const maxDimension = 1600;
+		const scale = Math.min(1, maxDimension / Math.max(image.naturalWidth, image.naturalHeight));
+		const canvas = document.createElement("canvas");
+		canvas.width = Math.max(1, Math.round(image.naturalWidth * scale));
+		canvas.height = Math.max(1, Math.round(image.naturalHeight * scale));
+		canvas.getContext("2d").drawImage(image, 0, 0, canvas.width, canvas.height);
+		URL.revokeObjectURL(source);
+		resolve(canvas.toDataURL("image/jpeg", 0.82));
+	};
+	image.onerror = () => {
+		URL.revokeObjectURL(source);
+		const reader = new FileReader();
+		reader.addEventListener("load", () => resolve(reader.result));
+		reader.readAsDataURL(file);
+	};
+	image.src = source;
+});
+
 const renderAboutPhotos = () => {
 	if (!aboutPhotoStack) return;
 	const photos = getAboutPhotos().slice(0, 4);
@@ -265,6 +287,9 @@ const renderAboutPhotos = () => {
 		const photoIndex = photos.length - 1 - index;
 		const image = document.createElement("img");
 		image.src = source;
+		image.loading = "lazy";
+		image.decoding = "async";
+		image.fetchPriority = "low";
 		image.alt = `About me photo ${photos.length - index}`;
 		image.draggable = false;
 		image.tabIndex = 0;
@@ -277,6 +302,7 @@ const renderAboutPhotos = () => {
 		image.style.setProperty("--photo-delay", `${index * 60}ms`);
 		image.style.setProperty("--photo-float-duration", layout.duration);
 		image.style.zIndex = index + 1;
+		image.classList.toggle("is-active-photo", photoIndex === 0);
 		if (photoIndex === 0) {
 			let startX = 0;
 			let startY = 0;
@@ -635,11 +661,7 @@ if (!isVisitorMode) form.addEventListener("submit", (event) => {
 if (!isVisitorMode && aboutPhotoInput) aboutPhotoInput.addEventListener("change", () => {
 	const files = [...aboutPhotoInput.files];
 	if (!files.length) return;
-	Promise.all(files.map((file) => new Promise((resolve) => {
-		const reader = new FileReader();
-		reader.addEventListener("load", () => resolve(reader.result));
-		reader.readAsDataURL(file);
-	}))).then((photos) => {
+	Promise.all(files.map(optimizeAboutPhoto)).then((photos) => {
 		localStorage.setItem(aboutPhotosKey, JSON.stringify([...photos, ...getAboutPhotos()]));
 		renderAboutPhotos();
 		aboutPhotoInput.value = "";
@@ -653,14 +675,12 @@ if (!isVisitorMode && editAboutPhotoButton) editAboutPhotoButton.addEventListene
 if (!isVisitorMode && replaceAboutPhotoInput) replaceAboutPhotoInput.addEventListener("change", () => {
 	const replacement = replaceAboutPhotoInput.files[0];
 	if (!replacement) return;
-	const reader = new FileReader();
-	reader.addEventListener("load", () => {
+	optimizeAboutPhoto(replacement).then((imageData) => {
 		const photos = getAboutPhotos();
-		photos[selectedAboutPhotoIndex] = reader.result;
+		photos[selectedAboutPhotoIndex] = imageData;
 		saveAboutPhotos(photos);
 		replaceAboutPhotoInput.value = "";
 	});
-	reader.readAsDataURL(replacement);
 });
 
 if (!isVisitorMode && removeAboutPhotoButton) removeAboutPhotoButton.addEventListener("click", () => {
@@ -686,7 +706,4 @@ window.addEventListener("storage", (event) => {
 	if (event.key === aboutPhotosKey) renderAboutPhotos();
 });
 
-window.addEventListener("focus", () => {
-	syncSharedContent();
-	renderAboutPhotos();
-});
+window.addEventListener("focus", syncSharedContent);

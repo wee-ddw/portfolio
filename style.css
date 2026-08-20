@@ -415,10 +415,16 @@ h2 {
     object-fit: cover;
     cursor: grab;
     touch-action: pan-y;
-    animation: photo-deal 420ms backwards, photo-float var(--photo-float-duration, 6s) ease-in-out infinite;
-    animation-delay: var(--photo-delay, 0ms), calc(var(--photo-delay, 0ms) + 420ms);
+    animation: photo-deal 420ms backwards;
+    animation-delay: var(--photo-delay, 0ms);
     transition: transform 280ms ease, box-shadow 280ms ease, opacity 280ms ease;
     transform: translate(calc(var(--photo-x) + var(--photo-drag-x, 0px)), calc(var(--photo-y) + var(--photo-drag-y, 0px) + var(--photo-float-y))) rotate(calc(var(--photo-rotation) + var(--photo-float-rotation)));
+}
+
+.about-photo-stack img.is-active-photo {
+    animation: photo-deal 420ms backwards, photo-float var(--photo-float-duration, 6s) ease-in-out infinite;
+    animation-delay: var(--photo-delay, 0ms), calc(var(--photo-delay, 0ms) + 420ms);
+    will-change: transform;
 }
 
 @keyframes photo-float {
