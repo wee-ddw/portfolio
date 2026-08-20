@@ -1848,6 +1848,93 @@ html.light-theme body {
     color: #fff;
 }
 
+/* Keep every interactive element neutral in light mode. */
+.light-theme .nav-links a.active,
+.light-theme .nav-links a:hover,
+.light-theme .project-image,
+.light-theme .calendar-button,
+.light-theme .add-button span,
+.light-theme .portrait-fallback {
+    color: #252525;
+    text-shadow: none;
+}
+
+.light-theme .nav-links a.active::after {
+    background: #252525;
+    box-shadow: none;
+}
+
+.light-theme .add-button,
+.light-theme .entry-action,
+.light-theme .calendar-button,
+.light-theme .modal-button-muted,
+.light-theme .close-button {
+    background: #fff;
+    border-color: #4b5563;
+    color: #252525;
+    box-shadow: none;
+}
+
+.light-theme .add-button:hover,
+.light-theme .entry-action:hover,
+.light-theme .calendar-button:hover,
+.light-theme .modal-button-muted:hover,
+.light-theme .close-button:hover,
+.light-theme .button:hover,
+.light-theme .form-submit,
+.light-theme .modal-button-danger:hover {
+    background: #252525;
+    border-color: #252525;
+    color: #fff;
+    box-shadow: none;
+}
+
+.light-theme .modal-backdrop {
+    background: rgba(37, 37, 37, 0.42);
+}
+
+.light-theme .entry-form label,
+.light-theme .confirmation-dialog > p:not(.section-label),
+.light-theme .form-note {
+    color: #4b5563;
+}
+
+.light-theme .entry-form input,
+.light-theme .entry-form textarea,
+.light-theme .date-picker {
+    background: #fff;
+    border-color: #9ca3af;
+    color: #252525;
+}
+
+.light-theme .entry-form input:focus,
+.light-theme .entry-form textarea:focus,
+.light-theme .date-picker:focus-within,
+.light-theme .date-picker:hover {
+    outline-color: #4b5563;
+    box-shadow: 0 0 0 3px rgba(75, 85, 99, 0.16);
+}
+
+.light-theme .certification-grid.is-carousel .certification-card:hover {
+    border-color: #4b5563;
+    box-shadow: 0 18px 35px rgba(37, 37, 37, 0.16);
+}
+
+.light-theme .three-scene {
+    opacity: 0.9;
+}
+
+.light-theme .hero-portrait {
+    background: #fff;
+    border-color: #9ca3af;
+}
+
+.light-theme .hero-portrait img {
+    bottom: 0;
+    -webkit-mask-image: none;
+    mask-image: none;
+}
+
 @media (max-width: 900px) {
     .theme-toggle {
         margin-left: auto;
