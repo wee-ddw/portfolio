@@ -1823,6 +1823,11 @@ html.light-theme body {
     color: #252525;
 }
 
+.light-theme.visitor-mode .visitor-badge {
+    border-color: #4b5563;
+    color: #252525;
+}
+
 .light-theme .hero-stats div,
 .light-theme .entry-actions {
     border-color: #d1d5db;
