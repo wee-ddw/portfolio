@@ -507,12 +507,6 @@ main > section:not(.hero) > * {
     display: none;
 }
 
-.static-portfolio [data-content-type],
-.static-portfolio .about-photo-controls,
-.static-portfolio .about-photo-add {
-    display: none !important;
-}
-
 .see-more-projects {
     display: flex;
     justify-content: center;
@@ -1742,6 +1736,23 @@ html.light-theme body {
     color: #fff;
 }
 
+.light-theme .logo-mark,
+.light-theme .loader-mark {
+    border-color: #252525;
+    background: #252525;
+    box-shadow: none;
+    color: #fff;
+}
+
+.light-theme .loader-line {
+    background: #d1d5db;
+}
+
+.light-theme .loader-line span {
+    background: #4b5563;
+    box-shadow: none;
+}
+
 .light-theme .hero,
 .light-theme main > section:not(.hero),
 .light-theme footer,
@@ -1766,6 +1777,14 @@ html.light-theme body {
     box-shadow: 0 8px 24px rgba(37, 37, 37, 0.1);
 }
 
+.light-theme .project-card:hover,
+.light-theme .certification-card:hover,
+.light-theme .project-card:hover .entry-image,
+.light-theme .certification-card:hover .entry-image {
+    border-color: #4b5563;
+    box-shadow: 0 12px 24px rgba(37, 37, 37, 0.14);
+}
+
 .light-theme .entry-image {
     background: #e5e7eb;
 }
@@ -1776,6 +1795,22 @@ html.light-theme body {
 .light-theme .hero-stats strong,
 .light-theme .education-honor {
     color: #4b5563;
+}
+
+.light-theme .logo:hover .logo-mark,
+.light-theme .skills span:hover,
+.light-theme .skill-icon:hover,
+.light-theme .visitor-badge,
+.light-theme .education-honor {
+    border-color: #4b5563;
+    box-shadow: none;
+}
+
+.light-theme .skill-icon,
+.light-theme .skills span,
+.light-theme .visitor-badge {
+    background: #fff;
+    color: #252525;
 }
 
 .light-theme .hero-stats div,
@@ -1789,6 +1824,15 @@ html.light-theme body {
 .light-theme .add-button {
     border-color: #4b5563;
     color: #252525;
+}
+
+.light-theme .add-button:hover,
+.light-theme .calendar-button:hover,
+.light-theme .modal-button-danger,
+.light-theme .form-submit:hover {
+    background: #252525;
+    border-color: #252525;
+    color: #fff;
 }
 
 .light-theme .social-bubble,
