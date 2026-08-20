@@ -151,6 +151,24 @@ nav {
     color: #ef2029;
 }
 
+.theme-toggle {
+    margin-left: 22px;
+    padding: 8px 12px;
+    border: 1px solid #b45cff;
+    border-radius: 999px;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    transition: background 0.25s, color 0.25s, border-color 0.25s;
+}
+
+.theme-toggle:hover {
+    background: #b45cff;
+}
+
 section {
     min-height: auto;
 
@@ -1681,6 +1699,115 @@ main > section:nth-of-type(even).scroll-reveal.is-visible {
         opacity: 1;
         transform: none;
         transition: none;
+    }
+}
+
+/* Light theme */
+html.light-theme body {
+    background: #fff;
+    color: #252525;
+}
+
+.light-theme nav {
+    background: rgba(255, 255, 255, 0.94);
+    border-color: #d1d5db;
+}
+
+.light-theme .logo,
+.light-theme h1,
+.light-theme h2,
+.light-theme h3,
+.light-theme .hero-name,
+.light-theme .hero-role,
+.light-theme .hero-script {
+    color: #252525;
+}
+
+.light-theme .nav-links a,
+.light-theme .about-text,
+.light-theme .project-card p,
+.light-theme .certification-card p,
+.light-theme .contact-details a,
+.light-theme #contact > p {
+    color: #4b5563;
+}
+
+.light-theme .theme-toggle {
+    border-color: #4b5563;
+    color: #252525;
+}
+
+.light-theme .theme-toggle:hover {
+    background: #252525;
+    color: #fff;
+}
+
+.light-theme .hero,
+.light-theme main > section:not(.hero),
+.light-theme footer,
+.light-theme .page-loader {
+    background: #fff;
+    background-image: none;
+}
+
+.light-theme .hero::before,
+.light-theme .hero::after,
+.light-theme main > section:not(.hero)::before {
+    display: none;
+}
+
+.light-theme .project-card,
+.light-theme .certification-card,
+.light-theme .confirmation-dialog,
+.light-theme .entry-form,
+.light-theme .photo-modal-content {
+    background: #fff;
+    border-color: #9ca3af;
+    box-shadow: 0 8px 24px rgba(37, 37, 37, 0.1);
+}
+
+.light-theme .entry-image {
+    background: #e5e7eb;
+}
+
+.light-theme .entry-content time,
+.light-theme .section-label,
+.light-theme .subtitle,
+.light-theme .hero-stats strong,
+.light-theme .education-honor {
+    color: #4b5563;
+}
+
+.light-theme .hero-stats div,
+.light-theme .entry-actions {
+    border-color: #d1d5db;
+}
+
+.light-theme .social-bubble,
+.light-theme .button,
+.light-theme .entry-action,
+.light-theme .add-button {
+    border-color: #4b5563;
+    color: #252525;
+}
+
+.light-theme .social-bubble,
+.light-theme .entry-action {
+    background: #fff;
+}
+
+.light-theme .button,
+.light-theme .add-button,
+.light-theme .social-bubble:hover,
+.light-theme .entry-action:hover {
+    background: #252525;
+    color: #fff;
+}
+
+@media (max-width: 900px) {
+    .theme-toggle {
+        margin-left: auto;
+        margin-right: 12px;
     }
 }
 

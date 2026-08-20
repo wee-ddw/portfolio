@@ -12,6 +12,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script>
+        if (localStorage.getItem("portfolio-theme") === "light") {
+            document.documentElement.classList.add("light-theme");
+        }
         if (new URLSearchParams(window.location.search).get("view") === "visitor") {
             document.documentElement.classList.add("visitor-mode");
         }
@@ -61,6 +64,7 @@
             <a href="#contact">Contact</a>
             <a href="viewer.html">Visitor view</a>
         </div>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false">Light mode</button>
         <span class="visitor-badge" hidden>VISITOR VIEW</span>
     </nav>
 

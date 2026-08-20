@@ -32,7 +32,23 @@ const editAboutPhotoButton = document.querySelector("#edit-about-photo");
 const removeAboutPhotoButton = document.querySelector("#remove-about-photo");
 const photoModal = document.querySelector("#photo-modal");
 const photoModalImage = document.querySelector("#photo-modal-image");
+const themeToggle = document.querySelector("#theme-toggle");
 const isVisitorMode = document.documentElement.classList.contains("visitor-mode");
+
+const updateThemeToggle = () => {
+	if (!themeToggle) return;
+	const isLightTheme = document.documentElement.classList.contains("light-theme");
+	themeToggle.textContent = isLightTheme ? "Dark mode" : "Light mode";
+	themeToggle.setAttribute("aria-pressed", String(isLightTheme));
+};
+
+themeToggle?.addEventListener("click", () => {
+	const isLightTheme = document.documentElement.classList.toggle("light-theme");
+	localStorage.setItem("portfolio-theme", isLightTheme ? "light" : "dark");
+	updateThemeToggle();
+});
+
+updateThemeToggle();
 
 if (isVisitorMode) {
 	document.title = "Portfolio | Visitor View";
