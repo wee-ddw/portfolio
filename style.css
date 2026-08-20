@@ -1790,9 +1790,16 @@ html.light-theme body {
 }
 
 .light-theme .hero::before,
-.light-theme .hero::after,
-.light-theme main > section:not(.hero)::before {
+.light-theme .hero::after {
     display: none;
+}
+
+.light-theme main > section:not(.hero)::before {
+    display: block;
+    opacity: 0.7;
+    background-image:
+        repeating-radial-gradient(ellipse at 10% 50%, rgba(75, 85, 99, 0.11) 0 1px, transparent 1px 72px),
+        repeating-radial-gradient(ellipse at 90% 45%, rgba(75, 85, 99, 0.08) 0 1px, transparent 1px 96px);
 }
 
 .light-theme .project-card,
