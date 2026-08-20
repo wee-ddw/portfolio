@@ -255,7 +255,12 @@ const renderAboutPhotos = () => {
 	aboutPhotoStack.classList.toggle("has-photos", photos.length > 0);
 	if (editAboutPhotoButton) editAboutPhotoButton.disabled = !photos.length;
 	if (removeAboutPhotoButton) removeAboutPhotoButton.disabled = !photos.length;
-	const rotations = [-7, 6, -3, 4];
+	const photoLayouts = [
+		{ x: -12, y: 12, rotation: -9, duration: "5.8s" },
+		{ x: 24, y: -10, rotation: 7, duration: "6.6s" },
+		{ x: -2, y: -18, rotation: -4, duration: "5.3s" },
+		{ x: 34, y: 8, rotation: 5, duration: "6.1s" }
+	];
 	photos.reverse().forEach((source, index) => {
 		const photoIndex = photos.length - 1 - index;
 		const image = document.createElement("img");
@@ -265,10 +270,12 @@ const renderAboutPhotos = () => {
 		image.tabIndex = 0;
 		image.setAttribute("role", "button");
 		image.setAttribute("aria-label", "View enlarged photo");
-		image.style.setProperty("--photo-rotation", `${rotations[index]}deg`);
-		image.style.setProperty("--photo-x", `${index * 9}px`);
-		image.style.setProperty("--photo-y", `${index * 5}px`);
+		const layout = photoLayouts[index];
+		image.style.setProperty("--photo-rotation", `${layout.rotation}deg`);
+		image.style.setProperty("--photo-x", `${layout.x}px`);
+		image.style.setProperty("--photo-y", `${layout.y}px`);
 		image.style.setProperty("--photo-delay", `${index * 60}ms`);
+		image.style.setProperty("--photo-float-duration", layout.duration);
 		image.style.zIndex = index + 1;
 		if (photoIndex === 0) {
 			let startX = 0;

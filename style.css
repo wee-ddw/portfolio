@@ -391,6 +391,18 @@ h2 {
     content: none;
 }
 
+@property --photo-float-y {
+    syntax: "<length>";
+    inherits: false;
+    initial-value: 0px;
+}
+
+@property --photo-float-rotation {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 0deg;
+}
+
 .about-photo-stack img {
     position: absolute;
     inset: 8px 20px 14px 4px;
@@ -403,10 +415,15 @@ h2 {
     object-fit: cover;
     cursor: grab;
     touch-action: pan-y;
-    animation: photo-deal 420ms both;
-    animation-delay: var(--photo-delay, 0ms);
+    animation: photo-deal 420ms backwards, photo-float var(--photo-float-duration, 6s) ease-in-out infinite;
+    animation-delay: var(--photo-delay, 0ms), calc(var(--photo-delay, 0ms) + 420ms);
     transition: transform 280ms ease, box-shadow 280ms ease, opacity 280ms ease;
-    transform: translate(calc(var(--photo-x) + var(--photo-drag-x, 0px)), calc(var(--photo-y) + var(--photo-drag-y, 0px))) rotate(var(--photo-rotation));
+    transform: translate(calc(var(--photo-x) + var(--photo-drag-x, 0px)), calc(var(--photo-y) + var(--photo-drag-y, 0px) + var(--photo-float-y))) rotate(calc(var(--photo-rotation) + var(--photo-float-rotation)));
+}
+
+@keyframes photo-float {
+    0%, 100% { --photo-float-y: 0px; --photo-float-rotation: 0deg; }
+    50% { --photo-float-y: -9px; --photo-float-rotation: 1.4deg; }
 }
 
 @keyframes photo-deal {
@@ -428,6 +445,7 @@ h2 {
 
 .about-photo-stack img.is-dragging {
     transition: none;
+    animation-play-state: paused;
 }
 
 .about-photo-controls {
@@ -1966,6 +1984,12 @@ html.light-theme body {
 @media (max-width: 900px) {
     .nav-tools {
         margin-left: auto;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .about-photo-stack img {
+        animation: none;
     }
 }
 
