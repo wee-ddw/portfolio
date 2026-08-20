@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Portfolio | Visitor View</title>
+    <meta http-equiv="refresh" content="0; url=index.html?view=visitor">
+    <script>window.location.replace("index.html?view=visitor");</script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="viewer.css">
+</head>
+
+<body class="visitor-site">
+
+    <div class="page-loader" id="page-loader" aria-label="Loading portfolio">
+        <div class="loader-mark">MW</div>
+        <div class="loader-line"><span></span></div>
+    </div>
+
+    <nav>
+        <a class="logo" href="#home" aria-label="My Portfolio home">
+            <span class="logo-mark" aria-hidden="true">MW</span>
+            <span>MY PORTFOLIO</span>
+        </a>
+
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#contact">Contact</a>
+        </div>
+
+        <span class="visitor-badge">VISITOR VIEW</span>
+    </nav>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-name" aria-hidden="true">MIGUEL WEE</div>
+            <div class="three-scene" id="three-scene" aria-hidden="true"></div>
+            <div class="hero-intro">
+                <p class="subtitle">COMPUTER ENGINEERING GRADUATE</p>
+                <p class="hero-script">Hello, I'm</p>
+                <h1>Juan&nbsp;Miguel<br>Wee</h1>
+                <p class="hero-role">DEVELOPER &amp;<br>TECH CREATOR</p>
+                <p class="description">Building thoughtful hardware and software experiences with a practical engineering mindset.</p>
+                <a href="#projects" class="button">View My Projects</a>
+            </div>
+            <div class="hero-portrait" aria-label="Portrait image area for Miguel Wee">
+                <img src="assets/profile-image.png" alt="Miguel Wee" onerror="this.hidden = true">
+            </div>
+            <div class="hero-stats">
+                <div><strong>01</strong><span>ENGINEERING<br>GRADUATE</span></div>
+                <div><strong>09+</strong><span>CORE<br>SKILLS</span></div>
+                <div><strong>∞</strong><span>DRIVE TO<br>LEARN</span></div>
+            </div>
+        </section>
+
+        <section id="about">
+            <p class="section-label">01 — ABOUT</p>
+            <h2>About Me</h2>
+            <p class="about-text">
+                I'm a Computer Engineering student who enjoys building things with both hardware and software.
+                I'm particularly interested in embedded systems, IoT, Raspberry Pi, ESP32, programming, and 3D printing.
+            </p>
+
+            <div class="subsection-heading">
+                <div>
+                    <p class="section-label">CERTIFICATIONS</p>
+                    <h3>Learning Milestones</h3>
+                </div>
+            </div>
+            <div class="certification-grid" id="certification-grid"></div>
+        </section>
+
+        <section id="projects">
+            <p class="section-label">02 — PROJECTS</p>
+            <div class="section-heading">
+                <h2>Selected Projects</h2>
+            </div>
+
+            <div class="project-grid" id="project-grid">
+                <article class="project-card built-in-project" data-built-in-id="atlas-kiosk">
+                    <div class="project-image">ATLAS</div>
+                    <h3>ATLAS Kiosk</h3>
+                    <p>A Raspberry Pi-based kiosk system using Python, RFID and Firebase.</p>
+                    <div class="tags"><span>Python</span><span>Raspberry Pi</span><span>Firebase</span></div>
+                </article>
+
+                <article class="project-card built-in-project" data-built-in-id="esp32-iot-system">
+                    <div class="project-image">ESP32</div>
+                    <h3>ESP32 IoT System</h3>
+                    <p>An IoT system using ESP32 and Firebase for remote device communication.</p>
+                    <div class="tags"><span>ESP32</span><span>IoT</span><span>Firebase</span></div>
+                </article>
+
+                <article class="project-card built-in-project" data-built-in-id="3d-printing">
+                    <div class="project-image">3D</div>
+                    <h3>3D Printing</h3>
+                    <p>Personal 3D modeling and FDM printing projects.</p>
+                    <div class="tags"><span>Blender</span><span>3D Printing</span><span>CAD</span></div>
+                </article>
+            </div>
+        </section>
+
+        <section id="skills">
+            <p class="section-label">03 — SKILLS</p>
+            <h2>Technologies</h2>
+            <div class="skills">
+                <span>Python</span><span>C / C++</span><span>ESP32</span><span>Raspberry Pi</span><span>Firebase</span>
+                <span>Git</span><span>Networking</span><span>3D Printing</span><span>Blender</span>
+            </div>
+        </section>
+
+        <section id="contact">
+            <p class="section-label">04 — CONTACT</p>
+            <h2>Let's Connect</h2>
+            <p>You can find me through my professional and project profiles.</p>
+            <div class="social-links" aria-label="Social media links">
+                <a class="social-bubble" href="#" aria-label="Facebook">f</a>
+                <a class="social-bubble" href="#" aria-label="Instagram">ig</a>
+                <a class="social-bubble" href="#" aria-label="LinkedIn">in</a>
+                <a class="social-bubble" href="#" aria-label="TikTok">t</a>
+            </div>
+            <div class="contact-details">
+                <a href="mailto:luegimwee@gmail.com">luegimwee@gmail.com</a>
+                <a href="tel:09291174616">09291174616</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 My Portfolio</p>
+    </footer>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+    <script type="module" src="three-scene.js"></script>
+    <script src="viewer.js"></script>
+
+</body>
+
+</html>

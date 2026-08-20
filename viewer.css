@@ -1,0 +1,33 @@
+.visitor-site .visitor-badge {
+    padding: 8px 12px;
+    border: 1px solid #d71920;
+    border-radius: 999px;
+    color: #ef2029;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+}
+
+.visitor-site .visitor-badge {
+    border-color: #8b5cf6;
+    color: #b45cff;
+}
+
+.visitor-site .section-heading {
+    align-items: center;
+}
+
+.visitor-site .project-card,
+.visitor-site .certification-card {
+    position: relative;
+}
+
+.visitor-site .custom-entry:hover {
+    transform: translateY(-8px);
+}
+
+@media (max-width: 900px) {
+    .visitor-site .visitor-badge {
+        display: none;
+    }
+}

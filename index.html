@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Wee</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        if (new URLSearchParams(window.location.search).get("view") === "visitor") {
+            document.documentElement.classList.add("visitor-mode");
+        }
+    </script>
+    <style>
+        .visitor-mode .add-button:not(.see-more-button),
+        .visitor-mode .entry-actions,
+        .visitor-mode .about-photo-controls,
+        .visitor-mode #entry-modal,
+        .visitor-mode #confirm-modal,
+        .visitor-mode .nav-links a[href="viewer.html"] { display: none !important; }
+
+        .visitor-mode .visitor-badge {
+            padding: 8px 12px;
+            border: 1px solid #8b5cf6;
+            border-radius: 999px;
+            color: #b45cff;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+        }
+
+        @media (max-width: 900px) {
+            .visitor-mode .visitor-badge { display: none; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="page-loader" id="page-loader" aria-label="Loading portfolio">
+        <div class="loader-mark">MW</div>
+        <div class="loader-line"><span></span></div>
+    </div>
+
+    <nav>
+        <a class="logo" href="#home" aria-label="My Portfolio home">
+            <span class="logo-mark" aria-hidden="true">MW</span>
+            <span>MY PORTFOLIO</span>
+        </a>
+
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#contact">Contact</a>
+            <a href="viewer.html">Visitor view</a>
+        </div>
+        <span class="visitor-badge" hidden>VISITOR VIEW</span>
+    </nav>
+
+
+    <main>
+
+        <section id="home" class="hero">
+            <div class="hero-name" aria-hidden="true">MIGUEL WEE</div>
+            <div class="three-scene" id="three-scene" aria-hidden="true"></div>
+            <div class="hero-intro">
+                <p class="subtitle">COMPUTER ENGINEERING GRADUATE</p>
+                <p class="hero-script">Hello, I'm</p>
+                <h1>Juan&nbsp;Miguel<br>Wee</h1>
+                <p class="hero-role">VIBECODER<br>TECHNOLOGY ENTHUSIAST</p>
+                <p class="description">Building thoughtful hardware and software experiences with a practical engineering mindset.</p>
+                <a href="#projects" class="button">View My Projects</a>
+            </div>
+
+            <div class="hero-portrait" aria-label="Portrait image area for Miguel Wee">
+                <img src="assets/profile-image.png" alt="Miguel Wee" onerror="this.hidden = true">
+            </div>
+
+            <div class="hero-stats">
+                <div><strong>01</strong><span>ENGINEERING<br>GRADUATE</span></div>
+                <div><strong>09+</strong><span>CORE<br>SKILLS</span></div>
+                <div><strong>∞</strong><span>DRIVE TO<br>LEARN</span></div>
+            </div>
+
+        </section>
+
+
+        <section id="about">
+
+            <p class="section-label">01 — ABOUT</p>
+
+            <h2>About Me</h2>
+
+            <div class="about-content">
+                <p class="about-text">
+                   I’m a Bachelor of Science in Computer Engineering graduate at the beginning of my journey as a developer.
+                    I believe every challenge is an opportunity to learn, build, and improve. With a strong technical foundation 
+                    and a curiosity for technology, I’m eager to turn ideas into practical solutions and grow into a developer whose work creates meaningful impact.
+                </p>
+
+                <div class="about-photo-panel">
+                    <div class="about-photo-stack" id="about-photo-stack" aria-label="About me photo gallery"></div>
+                    <div class="about-photo-controls">
+                        <button class="entry-action" id="edit-about-photo" type="button">Edit photo</button>
+                        <button class="entry-action entry-action-danger" id="remove-about-photo" type="button">Remove photo</button>
+                    </div>
+                    <label class="add-button about-photo-add" for="about-photo-input">
+                        <span aria-hidden="true">+</span> Add photos
+                    </label>
+                    <input id="about-photo-input" type="file" accept="image/*" multiple hidden>
+                    <input id="replace-about-photo-input" type="file" accept="image/*" hidden>
+                </div>
+            </div>
+
+            <div class="subsection-heading">
+                <div>
+                    <p class="section-label">CERTIFICATIONS</p>
+                    <h3>Learning Milestones</h3>
+                </div>
+                <button class="add-button" type="button" data-content-type="certification" aria-label="Add certification">
+                    <span aria-hidden="true">+</span> Add certification
+                </button>
+            </div>
+
+            <div class="certification-grid" id="certification-grid"></div>
+
+            <div class="subsection-heading education-heading">
+                <div>
+                    <p class="section-label">EDUCATION</p>
+                    <h3>Educational Background</h3>
+                </div>
+                <button class="add-button" type="button" data-content-type="education" aria-label="Add school">
+                    <span aria-hidden="true">+</span> Add school
+                </button>
+            </div>
+
+            <div class="project-grid education-grid" id="education-grid"></div>
+
+        </section>
+
+
+        <section id="projects">
+
+            <p class="section-label">02 — PROJECTS</p>
+
+            <div class="section-heading">
+                <h2>Selected Projects</h2>
+                <button class="add-button" type="button" data-content-type="project" aria-label="Add project">
+                    <span aria-hidden="true">+</span> Add project
+                </button>
+            </div>
+
+            <div class="project-grid" id="project-grid"></div>
+            <div class="see-more-projects">
+                <button class="add-button see-more-button" id="see-more-projects" type="button" hidden>See more</button>
+            </div>
+
+        </section>
+
+
+        <section id="skills">
+
+            <p class="section-label">03 — SKILLS</p>
+
+            <h2>Technologies</h2>
+
+            <div class="skills-carousel" aria-label="Technology skills">
+                <div class="skills-track">
+                    <div class="skills-set">
+                        <div class="skill-icon"><img src="assets/skill_icons/python.png" alt="Python"></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/java.png" alt="Java"></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/html.png" alt="HTML"></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/css-3.png" alt="CSS"></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/nodejs.png" alt="Node.js"></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/bambulablogo.webp" alt="Bambu Lab"></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/Blender_logo_no_text.svg.webp" alt="Blender"></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/Visual_Studio_Code_1.35_icon.svg.webp" alt="Visual Studio Code"></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/Cursor_logo.svg.webp" alt="Cursor"></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/ChatGPT_logo.svg.webp" alt="ChatGPT"></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/Claude_AI_symbol.svg.webp" alt="Claude"></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/Google_Gemini_icon_2025.svg.webp" alt="Google Gemini"></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/structure.png" alt="Data structures"></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/text.png" alt="Text tools"></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/Screenshot 2026-08-20 161017.png" alt="Technology tool"></div>
+                    </div>
+                    <div class="skills-set" aria-hidden="true">
+                        <div class="skill-icon"><img src="assets/skill_icons/python.png" alt=""></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/java.png" alt=""></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/html.png" alt=""></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/css-3.png" alt=""></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/nodejs.png" alt=""></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/bambulablogo.webp" alt=""></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/Blender_logo_no_text.svg.webp" alt=""></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/Visual_Studio_Code_1.35_icon.svg.webp" alt=""></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/Cursor_logo.svg.webp" alt=""></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/ChatGPT_logo.svg.webp" alt=""></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/Claude_AI_symbol.svg.webp" alt=""></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/Google_Gemini_icon_2025.svg.webp" alt=""></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/structure.png" alt=""></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/text.png" alt=""></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/Screenshot 2026-08-20 161017.png" alt=""></div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+
+        <section id="contact">
+
+            <p class="section-label">04 — CONTACT</p>
+
+            <h2>Let's Connect</h2>
+
+            <p>
+                You can find me through my professional and
+                project profiles.
+            </p>
+
+            <div class="social-links" aria-label="Social media links">
+                <a class="social-bubble" href="https://www.facebook.com/share/1DDf7srFk5/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">f</a>
+                <a class="social-bubble" href="https://www.instagram.com/siweetoh?igsh=MXhoZ255NmxraGVnbA==" target="_blank" rel="noopener noreferrer" aria-label="Instagram">ig</a>
+                <a class="social-bubble" href="#" aria-label="LinkedIn">in</a>
+                <a class="social-bubble" href="https://www.tiktok.com/@nobakuma?_r=1&amp;_t=ZS-992N6b8rFVU" target="_blank" rel="noopener noreferrer" aria-label="TikTok">t</a>
+            </div>
+
+            <div class="contact-details">
+                <a href="mailto:luegimwee@gmail.com">luegimwee@gmail.com</a>
+                <a href="tel:+639291174616">09291174616</a>
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        <p>© 2026 My Portfolio</p>
+    </footer>
+
+    <div class="modal" id="entry-modal" hidden>
+        <div class="modal-backdrop" data-close-modal></div>
+        <form class="entry-form" id="entry-form">
+            <button class="close-button" type="button" data-close-modal aria-label="Close form">×</button>
+            <p class="section-label" id="form-eyebrow">NEW ENTRY</p>
+            <h2 id="form-title">Add project</h2>
+
+            <label id="entry-title-label" for="entry-title">Title</label>
+            <input id="entry-title" name="title" type="text" required maxlength="80" placeholder="e.g. Smart Home Monitor">
+
+            <label id="entry-date-label" for="entry-date">Completion date</label>
+            <div class="date-picker">
+                <input id="entry-date" name="date" type="date" required>
+                <button class="calendar-button" id="calendar-button" type="button" aria-label="Open calendar">▣</button>
+            </div>
+
+            <label id="entry-description-label" for="entry-description">Description</label>
+            <textarea id="entry-description" name="description" rows="4" required maxlength="500" placeholder="What did you build or complete?"></textarea>
+
+            <div class="education-badges-field" id="education-badges-field" hidden>
+                <label for="education-badge-input">Awards and badges</label>
+                <div class="badge-entry-row">
+                    <input id="education-badge-input" type="text" maxlength="50" placeholder="e.g. Cum Laude">
+                    <button class="entry-action" id="add-education-badge" type="button">Add</button>
+                </div>
+                <div class="badge-editor-list" id="badge-editor-list" aria-live="polite"></div>
+            </div>
+
+            <label id="entry-image-label" for="entry-image">Image</label>
+            <input id="entry-image" name="image" type="file" accept="image/*" required>
+            <p class="form-note" id="image-note">Images are saved in this browser for this portfolio.</p>
+
+            <button class="button form-submit" id="form-submit" type="submit">Post entry</button>
+        </form>
+    </div>
+
+    <div class="modal" id="confirm-modal" hidden>
+        <div class="modal-backdrop" data-close-confirm></div>
+        <div class="confirmation-dialog" role="alertdialog" aria-modal="true" aria-labelledby="confirm-title" aria-describedby="confirm-message">
+            <div class="confirmation-icon" aria-hidden="true">!</div>
+            <p class="section-label">PLEASE CONFIRM</p>
+            <h2 id="confirm-title">Delete entry?</h2>
+            <p id="confirm-message">This entry will be removed from your portfolio.</p>
+            <div class="confirmation-actions">
+                <button class="modal-button modal-button-muted" id="cancel-delete" type="button">Cancel</button>
+                <button class="modal-button modal-button-danger" id="confirm-delete" type="button">Delete entry</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal photo-modal" id="photo-modal" hidden>
+        <div class="modal-backdrop" data-close-photo-modal></div>
+        <div class="photo-modal-content" role="dialog" aria-modal="true" aria-label="Enlarged about me photo">
+            <button class="close-button" type="button" data-close-photo-modal aria-label="Close photo">×</button>
+            <img id="photo-modal-image" alt="Enlarged about me photo">
+        </div>
+    </div>
+
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+    <script type="module" src="three-scene.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
