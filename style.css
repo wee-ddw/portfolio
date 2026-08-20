@@ -1937,6 +1937,19 @@ html.light-theme body {
 
 .light-theme .three-scene {
     opacity: 0.9;
+    filter: grayscale(1);
+}
+
+.light-theme .hero-stats strong {
+    color: #4b5563;
+}
+
+.light-theme .hero-stats span {
+    color: #6b7280;
+}
+
+.light-theme .hero-stats div {
+    border-bottom-color: #cbd5e1;
 }
 
 .light-theme .hero-portrait {
