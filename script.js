@@ -56,6 +56,12 @@ const storageKeys = {
 const hiddenBuiltInProjectsKey = "portfolio-hidden-built-in-projects";
 const aboutPhotosKey = "portfolio-about-photos";
 const ePortfolioImageMigrationKey = "portfolio-e-portfolio-dsa-image-updated";
+const defaultAboutPhotos = [
+	"assets/aboutme/20260318_074443.jpg",
+	"assets/aboutme/20260422_090819_459.jpg",
+	"assets/aboutme/20260513_172033.jpg",
+	"assets/aboutme/FB_IMG_1722431886016.jpg"
+];
 
 const hidePageLoader = () => {
 	if (pageLoader) window.setTimeout(() => pageLoader.classList.add("is-hidden"), 1450);
@@ -129,7 +135,10 @@ const updateEPortfolioImage = () => {
 
 const getHiddenBuiltInProjects = () => JSON.parse(localStorage.getItem(hiddenBuiltInProjectsKey) || "[]");
 
-const getAboutPhotos = () => JSON.parse(localStorage.getItem(aboutPhotosKey) || "[]");
+const getAboutPhotos = () => {
+	const savedPhotos = JSON.parse(localStorage.getItem(aboutPhotosKey) || "[]");
+	return savedPhotos.length ? savedPhotos : defaultAboutPhotos;
+};
 
 const saveAboutPhotos = (photos) => {
 	localStorage.setItem(aboutPhotosKey, JSON.stringify(photos));
@@ -397,12 +406,13 @@ const renderEntries = (contentType) => {
 		}
 		grid.scrollLeft = 0;
 	}
-	grid.classList.toggle("is-empty", entries.length === 0);
+	const hasStaticEntries = Boolean(grid.querySelector(".static-entry"));
+	grid.classList.toggle("is-empty", entries.length === 0 && !hasStaticEntries);
 	if (contentType === "certification") {
 		grid.classList.toggle("is-carousel", entries.length > 0);
 		grid.dispatchEvent(new Event("scroll"));
 	}
-	if (contentType === "project") grid.closest("section")?.classList.toggle("is-empty-section", entries.length === 0);
+	if (contentType === "project") grid.closest("section")?.classList.toggle("is-empty-section", entries.length === 0 && !hasStaticEntries);
 };
 
 const openModal = (contentType, entryIndex = null) => {

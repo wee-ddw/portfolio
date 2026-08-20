@@ -489,6 +489,12 @@ main > section:not(.hero) > * {
     display: none;
 }
 
+.static-portfolio [data-content-type],
+.static-portfolio .about-photo-controls,
+.static-portfolio .about-photo-add {
+    display: none !important;
+}
+
 .see-more-projects {
     display: flex;
     justify-content: center;
