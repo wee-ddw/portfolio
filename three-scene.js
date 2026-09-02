@@ -2,8 +2,10 @@ import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
 (() => {
-    const mount = document.querySelector("#three-scene");
-    if (!mount) return;
+    const mounts = document.querySelectorAll(".three-scene");
+    if (!mounts.length) return;
+
+    mounts.forEach((mount) => {
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const scene = new THREE.Scene();
@@ -92,8 +94,12 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
     const modelLoader = new GLTFLoader();
     modelLoader.load("assets/raspberry.glb", (gltf) => {
         const model = gltf.scene;
-        model.scale.setScalar(0.03);
-        model.position.set(0, -0.55, 0.15);
+        const modelBounds = new THREE.Box3().setFromObject(model);
+        const modelSize = modelBounds.getSize(new THREE.Vector3());
+        const modelCenter = modelBounds.getCenter(new THREE.Vector3());
+        const modelScale = 4.6 / Math.max(modelSize.y, 0.001);
+        model.scale.setScalar(modelScale);
+        model.position.set(-modelCenter.x * modelScale, -modelCenter.y * modelScale - 0.25, 0.15 - modelCenter.z * modelScale);
         model.rotation.set(-0.22, 0.2, -0.08);
         group.remove(raspberryPi);
         group.add(model);
@@ -136,4 +142,5 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
     };
 
     requestAnimationFrame(animate);
+    });
 })();

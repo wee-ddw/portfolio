@@ -68,6 +68,7 @@ const syncSharedContent = () => {
     });
     renderEntries("project");
     renderEntries("certification");
+    renderHeroStats();
 };
 
 const formatDate = (date) => new Intl.DateTimeFormat("en", {
@@ -108,12 +109,20 @@ const renderEntries = (contentType) => {
     getEntries(contentType).forEach((entry) => grid.appendChild(createCard(entry, contentType)));
 };
 
+const renderHeroStats = () => {
+    const visibleProjects = [...document.querySelectorAll("#project-grid .project-card")].filter((project) => !project.hidden).length;
+    const certifications = document.querySelectorAll("#certification-grid .certification-card").length;
+    document.querySelector("[data-stat='certifications']")?.replaceChildren(String(certifications));
+    document.querySelector("[data-stat='projects']")?.replaceChildren(String(visibleProjects));
+};
+
 document.querySelectorAll(".built-in-project").forEach((project) => {
     project.hidden = getHiddenBuiltInProjects().includes(project.dataset.builtInId);
 });
 
 renderEntries("project");
 renderEntries("certification");
+renderHeroStats();
 setupScrollReveal();
 setupActiveNavigation();
 
