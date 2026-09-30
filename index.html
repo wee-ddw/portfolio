@@ -15,79 +15,14 @@
         if (localStorage.getItem("portfolio-theme") === "light") {
             document.documentElement.classList.add("light-theme");
         }
-        if (new URLSearchParams(window.location.search).get("view") === "visitor") {
-            document.documentElement.classList.add("visitor-mode");
-        }
     </script>
-    <style>
-        .visitor-mode .add-button:not(.see-more-button),
-        .visitor-mode .entry-actions,
-        .visitor-mode .about-photo-controls,
-        .visitor-mode #entry-modal,
-        .visitor-mode #confirm-modal,
-        .visitor-mode .nav-links a[href="viewer.html"] { display: none !important; }
-
-        .visitor-mode .visitor-badge {
-            padding: 8px 12px;
-            border: 1px solid #8b5cf6;
-            border-radius: 999px;
-            color: #b45cff;
-            font-size: 11px;
-            font-weight: bold;
-            letter-spacing: 1.5px;
-        }
-
-    </style>
 </head>
 
-<body class="static-portfolio">
+<body>
 
     <div class="page-loader" id="page-loader" aria-label="Loading portfolio">
         <div class="loader-mark">MW</div>
         <div class="loader-line"><span></span></div>
-    </div>
-
-    <div class="access-modal" id="access-modal" hidden>
-        <div class="access-dialog" role="dialog" aria-modal="true" aria-labelledby="access-title">
-            <p class="section-label">WELCOME</p>
-            <h2 id="access-title">Choose your view</h2>
-            <p class="access-copy">Enter the visitor view or manage the portfolio content.</p>
-            <div class="access-choices">
-                <a class="button" href="?view=visitor">Visitor view</a>
-                <button class="add-button" id="open-admin-login" type="button">Admin login</button>
-            </div>
-            <form id="access-login-form" hidden>
-                <label for="access-password">Admin password</label>
-                <input id="access-password" type="password" autocomplete="current-password" required>
-                <p class="access-warning" id="access-warning" role="alert"></p>
-                <button class="button" type="submit">Continue to dashboard</button>
-            </form>
-        </div>
-    </div>
-
-    <div class="modal upload-modal" id="section-upload-modal" hidden>
-        <div class="modal-backdrop" data-close-upload-modal></div>
-        <form class="entry-form" id="section-upload-form">
-            <button class="close-button" type="button" data-close-upload-modal aria-label="Close upload form">×</button>
-            <p class="section-label">ADMIN EDITOR</p>
-            <h2 id="section-upload-title">Add portfolio content</h2>
-            <p class="upload-requirements" id="section-upload-requirements"></p>
-            <div id="section-upload-fields"></div>
-            <button class="button form-submit" type="submit">Save content</button>
-        </form>
-    </div>
-
-    <div class="modal delete-modal" id="delete-confirm-modal" hidden>
-        <div class="modal-backdrop" data-close-delete-modal></div>
-        <div class="confirmation-dialog" role="alertdialog" aria-modal="true" aria-labelledby="delete-title">
-            <p class="section-label">PLEASE CONFIRM</p>
-            <h2 id="delete-title">Delete this entry?</h2>
-            <p id="delete-message">This content will be removed from your portfolio.</p>
-            <div class="confirmation-actions">
-                <button class="modal-button modal-button-muted" type="button" data-close-delete-modal>Cancel</button>
-                <button class="modal-button modal-button-danger" id="confirm-entry-delete" type="button">Delete</button>
-            </div>
-        </div>
     </div>
 
     <nav>
@@ -102,14 +37,10 @@
             <a href="#projects">Projects</a>
             <a href="#skills">Skills</a>
             <a href="#contact">Contact</a>
-            <a href="viewer.html">Visitor view</a>
         </div>
-        <div class="nav-tools">
-            <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light mode" aria-pressed="false" title="Switch to light mode">
-                <span class="theme-icon" aria-hidden="true">☀</span>
-            </button>
-            <span class="visitor-badge" hidden>VISITOR VIEW</span>
-        </div>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light mode" aria-pressed="false" title="Switch to light mode">
+            <span class="theme-icon" aria-hidden="true">☀</span>
+        </button>
     </nav>
 
 
@@ -117,23 +48,24 @@
 
         <section id="home" class="hero">
             <div class="hero-name" aria-hidden="true">MIGUEL WEE</div>
-            <div class="three-scene" id="three-scene" data-model="raspberry" aria-hidden="true"></div>
+            <div class="three-scene" id="three-scene" aria-hidden="true"></div>
             <div class="hero-intro">
-                <p class="subtitle" data-profile="subtitle">COMPUTER ENGINEERING GRADUATE</p>
+                <p class="subtitle">COMPUTER ENGINEERING GRADUATE</p>
                 <p class="hero-script">Hello, I'm</p>
-                <h1 data-profile="name">JUAN MIGUEL<br>WEE</h1>
-                <p class="hero-role" data-profile="role">VIBECODER<br>TECHNOLOGY ENTHUSIAST</p>
-                <p class="description" data-profile="heroDescription">Building thoughtful hardware and software experiences with a practical engineering mindset.</p>
+                <h1>Juan&nbsp;Miguel<br>Wee</h1>
+                <p class="hero-role">VIBECODER<br>TECHNOLOGY ENTHUSIAST</p>
+                <p class="description">Building thoughtful hardware and software experiences with a practical engineering mindset.</p>
                 <a href="#projects" class="button">View My Projects</a>
             </div>
 
             <div class="hero-portrait" aria-label="Portrait image area for Miguel Wee">
-                <img src="/assets/profile-image.png" alt="Juan Miguel Wee">
+                <img src="assets/profile-image.png" alt="Miguel Wee" onerror="this.hidden = true">
             </div>
 
             <div class="hero-stats">
-                <div><strong data-stat="certifications">0</strong><span>CERTIFICATIONS</span></div>
-                <div><strong data-stat="projects">0</strong><span>PROJECTS<br>COMPLETED</span></div>
+                <div><strong>01</strong><span>ENGINEERING<br>GRADUATE</span></div>
+                <div><strong>09+</strong><span>CORE<br>SKILLS</span></div>
+                <div><strong>∞</strong><span>DRIVE TO<br>LEARN</span></div>
             </div>
 
         </section>
@@ -143,52 +75,79 @@
 
             <p class="section-label">01 — ABOUT</p>
 
-            <h2>Juan Miguel S. Wee</h2>
+            <h2>About Me</h2>
 
             <div class="about-content">
-                <p class="about-text" data-profile="about">
+                <p class="about-text">
                    I’m a Bachelor of Science in Computer Engineering graduate at the beginning of my journey as a developer.
                     I believe every challenge is an opportunity to learn, build, and improve. With a strong technical foundation 
                     and a curiosity for technology, I’m eager to turn ideas into practical solutions and grow into a developer whose work creates meaningful impact.
                 </p>
 
                 <div class="about-photo-panel">
-                    <div class="about-photo-stack" id="about-photo-stack" aria-label="About me photo gallery"></div>
-                    <div class="about-photo-controls">
-                        <button class="entry-action" id="edit-about-photo" type="button">Edit photo</button>
-                        <button class="entry-action entry-action-danger" id="remove-about-photo" type="button">Remove photo</button>
+                    <div class="about-photo-stack has-photos" id="about-photo-stack" aria-label="About me photo gallery">
+                        <img src="assets/aboutme/20260318_074443.jpg" alt="Miguel Wee at a computer engineering activity" style="--photo-rotation: -7deg; --photo-x: 0px; --photo-y: 0px; --photo-delay: 0ms;">
+                        <img src="assets/aboutme/20260422_090819_459.jpg" alt="Miguel Wee working on a technology project" style="--photo-rotation: 6deg; --photo-x: 9px; --photo-y: 5px; --photo-delay: 60ms;">
+                        <img src="assets/aboutme/20260513_172033.jpg" alt="Miguel Wee during a project activity" style="--photo-rotation: -3deg; --photo-x: 18px; --photo-y: 10px; --photo-delay: 120ms;">
+                        <img src="assets/aboutme/FB_IMG_1722431886016.jpg" alt="Miguel Wee with a completed technology project" style="--photo-rotation: 4deg; --photo-x: 27px; --photo-y: 15px; --photo-delay: 180ms;">
                     </div>
-                    <button class="add-button admin-only about-photo-add" type="button" data-content-type="about_photo">
-                        <span aria-hidden="true">+</span> Add photos
-                    </button>
-                    <input id="about-photo-input" type="file" accept="image/*" multiple hidden>
-                    <input id="replace-about-photo-input" type="file" accept="image/*" hidden>
                 </div>
             </div>
 
             <div class="subsection-heading">
                 <div>
-                    <p class="section-label">EDUCATION</p>
-                    <h3>Educational Background</h3>
-                </div>
-                <button class="add-button admin-only" type="button" data-content-type="education" aria-label="Add school">
-                    <span aria-hidden="true">+</span> Add school
-                </button>
-            </div>
-
-            <div class="project-grid education-grid" id="education-grid"></div>
-
-            <div class="subsection-heading certification-heading">
-                <div>
                     <p class="section-label">CERTIFICATIONS</p>
                     <h3>Learning Milestones</h3>
                 </div>
-                <button class="add-button admin-only" type="button" data-content-type="certification" aria-label="Add certification">
-                    <span aria-hidden="true">+</span> Add certification
-                </button>
             </div>
 
-            <div class="certification-grid" id="certification-grid"></div>
+            <div class="certification-grid" id="certification-grid">
+                <article class="certification-card static-entry certificate-extra">
+                    <img class="entry-image" src="assets/certificates/java.png" alt="Oracle Java Fundamentals certificate">
+                    <div class="entry-content"><time datetime="2023-06-24">June 24, 2023</time><h3>Oracle Java Fundamentals</h3><p>Java Fundamentals</p></div>
+                </article>
+                <article class="certification-card static-entry certificate-extra">
+                    <img class="entry-image" src="assets/certificates/redhat.png" alt="Red Hat certificate">
+                    <div class="entry-content"><time datetime="2025-09-03">September 3, 2025</time><h3>Red Hat</h3><p>Red Hat System Administration I (RH124 - RHA) - Ver.9.3</p></div>
+                </article>
+                <article class="certification-card static-entry">
+                    <img class="entry-image" src="assets/certificates/AI%20asean.png" alt="AI Ready ASEAN certificate">
+                    <div class="entry-content"><time datetime="2025-10-25">October 25, 2025</time><h3>AI Ready ASEAN</h3><p>AI Ready ASEAN Hour of Code Training</p></div>
+                </article>
+                <article class="certification-card static-entry">
+                    <img class="entry-image" src="assets/certificates/aws.png" alt="AWS Academy certificate">
+                    <div class="entry-content"><time datetime="2025-11-08">November 8, 2025</time><h3>AWS Academy</h3><p>AWS Academy Graduate - AWS Cloud Foundations</p></div>
+                </article>
+                <article class="certification-card static-entry">
+                    <img class="entry-image" src="assets/certificates/spm.jpg" alt="S.P. Madrid certificate">
+                    <div class="entry-content"><time datetime="2026-04-21">April 21, 2026</time><h3>S.P. Madrid</h3><p>Certificate of Completion, 300 hours</p></div>
+                </article>
+            </div>
+            <div class="see-more-projects certificate-more">
+                <button class="button" id="view-more-certificates" type="button">View more certificates</button>
+            </div>
+
+            <div class="subsection-heading education-heading">
+                <div>
+                    <p class="section-label">EDUCATION</p>
+                    <h3>Educational Background</h3>
+                </div>
+            </div>
+
+            <div class="project-grid education-grid" id="education-grid">
+                <article class="project-card static-entry">
+                    <img class="entry-image" src="assets/school3.jpg" alt="La Consolacion School Balagtas">
+                    <div class="entry-content"><time datetime="2020-03-20">March 20, 2020</time><h3>La Consolacion School Balagtas</h3><p>High School</p><span class="education-honor" style="--badge-color: #fbbf24">★ C.A.T Award</span><span class="education-honor" style="--badge-color: #14b8a6">★ SCB Award</span></div>
+                </article>
+                <article class="project-card static-entry">
+                    <img class="entry-image" src="assets/school2.jpg" alt="La Consolacion University Philippines">
+                    <div class="entry-content"><time datetime="2022-06-15">June 15, 2022</time><h3>La Consolacion University Philippines</h3><p>STEM</p><span class="education-honor" style="--badge-color: #fbbf24">★ With Honors</span><span class="education-honor" style="--badge-color: #39ff14">★ Loyalty Award</span></div>
+                </article>
+                <article class="project-card static-entry">
+                    <img class="entry-image" src="assets/school1.jpg" alt="STI College Balagtas">
+                    <div class="entry-content"><time datetime="2026-06-23">June 23, 2026</time><h3>STI College Balagtas</h3><p>Bachelor of Science in Computer Engineering</p><span class="education-honor" style="--badge-color: #fbbf24">★ Cum Laude</span><span class="education-honor" style="--badge-color: #22c55e">★ Best Thesis</span><span class="education-honor" style="--badge-color: #14b8a6">★ Student Achievement Awardee</span><span class="education-honor" style="--badge-color: #ef4444">★ Student Service Awardee</span></div>
+                </article>
+            </div>
 
         </section>
 
@@ -199,14 +158,29 @@
 
             <div class="section-heading">
                 <h2>Selected Projects</h2>
-                <button class="add-button admin-only" type="button" data-content-type="project" aria-label="Add project">
-                    <span aria-hidden="true">+</span> Add project
-                </button>
             </div>
 
-            <div class="project-grid" id="project-grid"></div>
-            <div class="see-more-projects">
-                <button class="add-button see-more-button" id="see-more-projects" type="button" hidden>See more</button>
+            <div class="project-grid" id="project-grid">
+                <article class="project-card static-entry">
+                    <img class="entry-image" src="assets/workexp/20250529_091300.jpg" alt="Robotics line follower robot">
+                    <div class="entry-content"><time datetime="2025-05-29">May 29, 2025</time><h3>Robotics Line Follower Robot</h3><p>Line Follower Robot using Arduino Uno</p></div>
+                </article>
+                <article class="project-card static-entry">
+                    <img class="entry-image" src="assets/workexp/FB_IMG_1761128781280.jpg" alt="Robotics obstacle avoidance robot">
+                    <div class="entry-content"><time datetime="2025-08-21">August 21, 2025</time><h3>Robotics Obstacle Avoidance Robot</h3><p>Obstacle Avoidance Robot using Arduino Uno</p></div>
+                </article>
+                <article class="project-card static-entry">
+                    <img class="entry-image" src="assets/workexp/20251126_113024.jpg" alt="ATLAS thesis project presentation">
+                    <div class="entry-content"><time datetime="2025-11-17">November 17, 2025</time><h3>Thesis Project</h3><p>ATLAS - Academic Technology Locator Attendance System for Educators</p></div>
+                </article>
+                <article class="project-card static-entry">
+                    <img class="entry-image" src="assets/workexp/20260413_130439.jpg" alt="S.P. Madrid internship">
+                    <div class="entry-content"><time datetime="2026-04-21">April 21, 2026</time><h3>S.P. Madrid</h3><p>Help built functions and features in the Legal Management System</p></div>
+                </article>
+                <article class="project-card static-entry">
+                    <img class="entry-image" src="assets/workexp/dsa.png" alt="E-portfolio website">
+                    <div class="entry-content"><time datetime="2026-08-20">August 20, 2026</time><h3>E-portfolio</h3><p>Created this via vibecoding</p></div>
+                </article>
             </div>
 
         </section>
@@ -218,13 +192,36 @@
 
             <h2>Technologies</h2>
 
-            <button class="add-button admin-only" type="button" data-content-type="skill" aria-label="Upload technology image">
-                <span aria-hidden="true">+</span> Upload technology
-            </button>
-
             <div class="skills-carousel" aria-label="Technology skills">
                 <div class="skills-track">
-                    <div class="skills-set"></div>
+                    <div class="skills-set">
+                        <div class="skill-icon"><img src="assets/skill_icons/python.png" alt="Python"></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/java.png" alt="Java"></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/bambulablogo.webp" alt="Bambu Lab"></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/creality.png" alt="Creality"></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/Blender_logo_no_text.svg.webp" alt="Blender"></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/Visual_Studio_Code_1.35_icon.svg.webp" alt="Visual Studio Code"></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/Cursor_logo.svg.webp" alt="Cursor"></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/ChatGPT_logo.svg.webp" alt="ChatGPT"></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/Claude_AI_symbol.svg.webp" alt="Claude"></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/Google_Gemini_icon_2025.svg.webp" alt="Google Gemini"></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/structure.png" alt="Data structures"></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/Screenshot 2026-08-20 161017.png" alt="Technology tool"></div>
+                    </div>
+                    <div class="skills-set" aria-hidden="true">
+                        <div class="skill-icon"><img src="assets/skill_icons/python.png" alt=""></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/java.png" alt=""></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/bambulablogo.webp" alt=""></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/creality.png" alt=""></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/Blender_logo_no_text.svg.webp" alt=""></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/Visual_Studio_Code_1.35_icon.svg.webp" alt=""></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/Cursor_logo.svg.webp" alt=""></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/ChatGPT_logo.svg.webp" alt=""></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/Claude_AI_symbol.svg.webp" alt=""></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/Google_Gemini_icon_2025.svg.webp" alt=""></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/structure.png" alt=""></div>
+                        <div class="skill-icon"><img src="assets/skill_icons/Screenshot 2026-08-20 161017.png" alt=""></div>
+                    </div>
                 </div>
             </div>
 
@@ -237,7 +234,7 @@
 
             <h2>Let's Connect</h2>
 
-            <p data-profile="contactDescription">
+            <p>
                 You can find me through my professional and
                 project profiles.
             </p>
@@ -263,56 +260,6 @@
         <p>© 2026 My Portfolio</p>
     </footer>
 
-    <div class="modal" id="entry-modal" hidden>
-        <div class="modal-backdrop" data-close-modal></div>
-        <form class="entry-form" id="entry-form">
-            <button class="close-button" type="button" data-close-modal aria-label="Close form">×</button>
-            <p class="section-label" id="form-eyebrow">NEW ENTRY</p>
-            <h2 id="form-title">Add project</h2>
-
-            <label id="entry-title-label" for="entry-title">Title</label>
-            <input id="entry-title" name="title" type="text" required maxlength="80" placeholder="e.g. Smart Home Monitor">
-
-            <label id="entry-date-label" for="entry-date">Completion date</label>
-            <div class="date-picker">
-                <input id="entry-date" name="date" type="date" required>
-                <button class="calendar-button" id="calendar-button" type="button" aria-label="Open calendar">▣</button>
-            </div>
-
-            <label id="entry-description-label" for="entry-description">Description</label>
-            <textarea id="entry-description" name="description" rows="4" required maxlength="500" placeholder="What did you build or complete?"></textarea>
-
-            <div class="education-badges-field" id="education-badges-field" hidden>
-                <label for="education-badge-input">Awards and badges</label>
-                <div class="badge-entry-row">
-                    <input id="education-badge-input" type="text" maxlength="50" placeholder="e.g. Cum Laude">
-                    <button class="entry-action" id="add-education-badge" type="button">Add</button>
-                </div>
-                <div class="badge-editor-list" id="badge-editor-list" aria-live="polite"></div>
-            </div>
-
-            <label id="entry-image-label" for="entry-image">Image</label>
-            <input id="entry-image" name="image" type="file" accept="image/*" required>
-            <p class="form-note" id="image-note">Images are saved in this browser for this portfolio.</p>
-
-            <button class="button form-submit" id="form-submit" type="submit">Post entry</button>
-        </form>
-    </div>
-
-    <div class="modal" id="confirm-modal" hidden>
-        <div class="modal-backdrop" data-close-confirm></div>
-        <div class="confirmation-dialog" role="alertdialog" aria-modal="true" aria-labelledby="confirm-title" aria-describedby="confirm-message">
-            <div class="confirmation-icon" aria-hidden="true">!</div>
-            <p class="section-label">PLEASE CONFIRM</p>
-            <h2 id="confirm-title">Delete entry?</h2>
-            <p id="confirm-message">This entry will be removed from your portfolio.</p>
-            <div class="confirmation-actions">
-                <button class="modal-button modal-button-muted" id="cancel-delete" type="button">Cancel</button>
-                <button class="modal-button modal-button-danger" id="confirm-delete" type="button">Delete entry</button>
-            </div>
-        </div>
-    </div>
-
     <div class="modal photo-modal" id="photo-modal" hidden>
         <div class="modal-backdrop" data-close-photo-modal></div>
         <div class="photo-modal-content" role="dialog" aria-modal="true" aria-label="Enlarged about me photo">
@@ -331,7 +278,7 @@
         }
     </script>
     <script type="module" src="three-scene.js"></script>
-    <script src="script.js"></script>
+    <script src="static.js"></script>
 
 </body>
 

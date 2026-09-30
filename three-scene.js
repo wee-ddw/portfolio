@@ -2,10 +2,8 @@ import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
 (() => {
-    const mounts = document.querySelectorAll(".three-scene");
-    if (!mounts.length) return;
-
-    mounts.forEach((mount) => {
+    const mount = document.querySelector("#three-scene");
+    if (!mount) return;
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const scene = new THREE.Scene();
@@ -26,7 +24,7 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
     mount.appendChild(renderer.domElement);
 
     const group = new THREE.Group();
-    group.position.set(0.4, 0.4, 0);
+    group.position.set(0.4, 0.05, 0);
     scene.add(group);
 
     const raspberryPi = new THREE.Group();
@@ -94,12 +92,8 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
     const modelLoader = new GLTFLoader();
     modelLoader.load("assets/raspberry.glb", (gltf) => {
         const model = gltf.scene;
-        const modelBounds = new THREE.Box3().setFromObject(model);
-        const modelSize = modelBounds.getSize(new THREE.Vector3());
-        const modelCenter = modelBounds.getCenter(new THREE.Vector3());
-        const modelScale = 4.6 / Math.max(modelSize.y, 0.001);
-        model.scale.setScalar(modelScale);
-        model.position.set(-modelCenter.x * modelScale, -modelCenter.y * modelScale - 0.25, 0.15 - modelCenter.z * modelScale);
+        model.scale.setScalar(0.03);
+        model.position.set(0, -0.55, 0.15);
         model.rotation.set(-0.22, 0.2, -0.08);
         group.remove(raspberryPi);
         group.add(model);
@@ -135,12 +129,11 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
             particles.rotation.y = -seconds * 0.8 + pointer.x * 0.08;
             particles.rotation.x = pointer.y * 0.05;
             group.position.x += (pointer.x * 0.18 + 0.4 - group.position.x) * 0.025;
-            group.position.y += (pointer.y * -0.12 + 0.4 - group.position.y) * 0.025;
+            group.position.y += (pointer.y * -0.12 + 0.05 - group.position.y) * 0.025;
         }
         renderer.render(scene, camera);
         requestAnimationFrame(animate);
     };
 
     requestAnimationFrame(animate);
-    });
 })();

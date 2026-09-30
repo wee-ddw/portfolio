@@ -1,17 +1,16 @@
-# Portfolio CMS
+# Miguel Wee Portfolio
 
-This portfolio now runs as a small Node.js CMS while preserving the existing HTML, CSS, and Three.js presentation.
+A static personal portfolio for Miguel Wee, built with HTML, CSS, JavaScript, and Three.js. It includes responsive layouts, light/dark mode, image galleries, certificate and technology carousels, and a mobile-friendly presentation.
 
 ## Run locally
 
-1. Install Node.js 24 or newer.
+1. Install Node.js.
 2. Run `npm install`.
-3. Set `ADMIN_PASSWORD` and `SESSION_SECRET` in the environment.
-4. Run `npm start`.
-5. Open `http://localhost:3000/admin` to manage content, or `http://localhost:3000` to view the site.
+3. Run `npm start`.
+4. Open `http://localhost:3000`.
 
-The first server start creates `portfolio.db` and seeds the current portfolio content. Uploaded images are stored in `uploads/`; back up both that folder and the database when deploying.
+The site is intentionally static. Portfolio content and images are stored in `index.html` and `assets/`; there is no admin dashboard, visitor mode, database, or upload API.
 
 ## Deployment
 
-Deploy the folder to a Node-compatible host with persistent disk storage. Set a strong `ADMIN_PASSWORD`, a random `SESSION_SECRET`, and `NODE_ENV=production`. The public site reads published records from `/api/public`; the password-protected dashboard at `/admin` manages profile information, projects, certificates, education, skills, about photos, and uploads.
+Deploy the project to any static host, or run it with the included Express static server. The site can also be served directly by a standard static file server.
