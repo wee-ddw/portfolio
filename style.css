@@ -35,6 +35,28 @@ body {
     background: #b45cff;
 }
 
+.nav-shop {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 13px;
+    border: 1px solid #b45cff;
+    border-radius: 999px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-decoration: none;
+    transition: background 0.25s, color 0.25s, border-color 0.25s, transform 0.25s;
+    margin-left: auto;
+}
+
+.nav-shop:hover {
+    background: #b45cff;
+    color: #fff;
+    transform: translateY(-1px);
+}
+
 html.light-theme body {
     background: #fff;
     color: #252525;
@@ -83,6 +105,17 @@ html.light-theme body {
     color: #fff;
 }
 
+.light-theme .nav-shop {
+    border-color: #4b5563;
+    color: #252525;
+}
+
+.light-theme .nav-shop:hover {
+    border-color: #b45cff;
+    background: #b45cff;
+    color: #fff;
+}
+
 .light-theme .hero::before,
 .light-theme .hero::after,
 .light-theme main > section:not(.hero)::before {
@@ -114,8 +147,12 @@ html.light-theme body {
 }
 
 @media (max-width: 900px) {
-    .theme-toggle {
+    .nav-shop {
         margin-left: auto;
+    }
+
+    .theme-toggle {
+        margin-left: 12px;
         margin-right: 12px;
     }
 }
@@ -196,7 +233,7 @@ nav {
 
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
 
     padding: 0 7%;
 
@@ -243,6 +280,9 @@ nav {
 .nav-links {
     display: flex;
     gap: 30px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .nav-links a {
@@ -655,18 +695,6 @@ main > section:not(.hero) > * {
     border-color: #b45cff;
     box-shadow: 0 18px 35px rgba(124, 58, 237, 0.2);
     transform: rotateY(var(--carousel-rotation, 0deg)) translateY(-8px) scale(1.04);
-}
-
-.certification-grid:not(.show-all) .certificate-extra {
-    display: none;
-}
-
-.certificate-more {
-    margin-top: 8px;
-}
-
-.certificate-more[hidden] {
-    display: none;
 }
 
 .education-heading {

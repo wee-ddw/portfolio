@@ -68,18 +68,18 @@ document.addEventListener("keydown", (event) => {
 });
 
 const certificationGrid = document.querySelector("#certification-grid");
-const viewMoreCertificates = document.querySelector("#view-more-certificates");
 let certificationCarouselTimer = null;
 
 const setupCertificationCarousel = () => {
     if (!certificationGrid) return;
     certificationGrid.classList.add("is-carousel");
     certificationGrid.querySelectorAll(".carousel-clone").forEach((clone) => clone.remove());
-    const visibleCards = [...certificationGrid.querySelectorAll(".certification-card:not(.certificate-extra)")];
-    const clones = visibleCards.map((card) => {
+    const certificationCards = [...certificationGrid.querySelectorAll(".certification-card")];
+    const clones = certificationCards.map((card) => {
         const clone = card.cloneNode(true);
         clone.classList.add("carousel-clone");
         clone.setAttribute("aria-hidden", "true");
+        clone.style.pointerEvents = "none";
         clone.querySelectorAll("img").forEach((image) => image.setAttribute("alt", ""));
         return clone;
     });
@@ -127,7 +127,10 @@ const setupCertificationCarousel = () => {
     };
     certificationGrid.addEventListener("pointerup", stopDragging);
     certificationGrid.addEventListener("pointercancel", stopDragging);
-    certificationGrid.addEventListener("scroll", updateCardRotation, { passive: true });
+    certificationGrid.addEventListener("scroll", () => {
+        if (!isDragging) autoScrollPosition = certificationGrid.scrollLeft;
+        updateCardRotation();
+    }, { passive: true });
     window.addEventListener("resize", updateCardRotation);
 
     window.clearInterval(certificationCarouselTimer);
@@ -146,12 +149,6 @@ const setupCertificationCarousel = () => {
     }, 16);
     updateCardRotation();
 };
-
-viewMoreCertificates?.addEventListener("click", () => {
-    certificationGrid?.querySelectorAll(".carousel-clone").forEach((clone) => clone.remove());
-    certificationGrid?.classList.add("show-all");
-    viewMoreCertificates.hidden = true;
-});
 
 setupCertificationCarousel();
 
