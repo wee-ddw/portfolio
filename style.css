@@ -2575,6 +2575,10 @@ html.light-theme {
     text-shadow: 0 3px 18px rgba(255, 255, 255, .85);
 }
 
+.light-theme .hero-intro::before {
+    background: transparent;
+}
+
 @media (max-width: 600px) {
     .hero-intro::before {
         inset: -18px -18px -24px -18px;
