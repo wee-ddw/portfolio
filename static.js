@@ -18,47 +18,47 @@ themeToggle?.addEventListener("click", () => {
     const isLightTheme = document.documentElement.classList.toggle("light-theme");
     localStorage.setItem("portfolio-theme", isLightTheme ? "light" : "dark");
     updateThemeToggle();
-
-    menuToggle?.addEventListener("click", () => {
-        const isOpen = nav?.classList.toggle("menu-open") || false;
-        menuToggle.setAttribute("aria-expanded", String(isOpen));
-        menuToggle.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
-    });
-
-    document.querySelectorAll(".nav-links a").forEach((link) => {
-        link.addEventListener("click", () => {
-            nav?.classList.remove("menu-open");
-            menuToggle?.setAttribute("aria-expanded", "false");
-            menuToggle?.setAttribute("aria-label", "Open navigation menu");
-        });
-    });
-
-    const updateScrollState = () => {
-        const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const progress = scrollableHeight > 0 ? (window.scrollY / scrollableHeight) * 100 : 0;
-        scrollProgress?.style.setProperty("--scroll-progress", `${progress}%`);
-        nav?.classList.toggle("is-scrolled", window.scrollY > 24);
-    };
-
-    window.addEventListener("scroll", updateScrollState, { passive: true });
-    updateScrollState();
-
-    const sectionLinks = [...document.querySelectorAll(".nav-links a")];
-    const sections = sectionLinks
-        .map((link) => document.querySelector(link.getAttribute("href")))
-        .filter(Boolean);
-    if ("IntersectionObserver" in window) {
-        const sectionObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (!entry.isIntersecting) return;
-                sectionLinks.forEach((link) => link.classList.toggle("is-active", link.getAttribute("href") === `#${entry.target.id}`));
-            });
-        }, { rootMargin: "-35% 0px -55% 0px" });
-        sections.forEach((section) => sectionObserver.observe(section));
-    }
 });
 
 updateThemeToggle();
+
+menuToggle?.addEventListener("click", () => {
+    const isOpen = nav?.classList.toggle("menu-open") || false;
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+    menuToggle.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
+});
+
+document.querySelectorAll(".nav-links a").forEach((link) => {
+    link.addEventListener("click", () => {
+        nav?.classList.remove("menu-open");
+        menuToggle?.setAttribute("aria-expanded", "false");
+        menuToggle?.setAttribute("aria-label", "Open navigation menu");
+    });
+});
+
+const updateScrollState = () => {
+    const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = scrollableHeight > 0 ? (window.scrollY / scrollableHeight) * 100 : 0;
+    scrollProgress?.style.setProperty("--scroll-progress", `${progress}%`);
+    nav?.classList.toggle("is-scrolled", window.scrollY > 24);
+};
+
+window.addEventListener("scroll", updateScrollState, { passive: true });
+updateScrollState();
+
+const sectionLinks = [...document.querySelectorAll(".nav-links a")];
+const sections = sectionLinks
+    .map((link) => document.querySelector(link.getAttribute("href")))
+    .filter(Boolean);
+if ("IntersectionObserver" in window) {
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            sectionLinks.forEach((link) => link.classList.toggle("is-active", link.getAttribute("href") === `#${entry.target.id}`));
+        });
+    }, { rootMargin: "-35% 0px -55% 0px" });
+    sections.forEach((section) => sectionObserver.observe(section));
+}
 
 const openPhotoModal = (source, label) => {
     if (!photoModal || !photoModalImage) return;

@@ -2413,7 +2413,10 @@ html.light-theme {
 .light-theme .contact-details a { color: var(--ink); }
 
 @media (max-width: 900px) {
-    nav { padding: 0 22px; }
+    nav {
+        padding-right: max(22px, env(safe-area-inset-right));
+        padding-left: max(22px, env(safe-area-inset-left));
+    }
     .nav-links {
         position: fixed;
         top: 78px;
@@ -2436,11 +2439,18 @@ html.light-theme {
         pointer-events: auto;
         transform: translateY(0);
     }
-    .nav-links a { padding: 15px; }
+    .nav-links a {
+        min-height: 48px;
+        padding: 15px;
+    }
     .nav-links a::after { bottom: 8px; left: 15px; right: 15px; }
     .menu-toggle { display: block; }
     .nav-shop { margin-left: auto; }
-    .hero { min-height: auto; padding-top: 130px; }
+    .hero {
+        min-height: auto;
+        padding-top: 130px;
+        overflow: hidden;
+    }
     .hero h1 { font-size: clamp(64px, 14vw, 104px); }
     .about-content { grid-template-columns: 1fr; }
     .about-photo-panel { justify-items: start; }
@@ -2450,19 +2460,49 @@ html.light-theme {
 }
 
 @media (max-width: 600px) {
-    section { padding: 84px 22px; }
+    section {
+        padding-right: max(22px, env(safe-area-inset-right));
+        padding-left: max(22px, env(safe-area-inset-left));
+    }
     .nav-shop { display: none; }
     .theme-toggle { margin-left: auto; }
-    .hero { padding-top: 120px; }
+    .hero {
+        gap: 20px;
+        padding-top: 166px;
+        padding-bottom: 56px;
+    }
     .hero h1 { font-size: clamp(60px, 17vw, 88px); }
     .hero-actions { align-items: flex-start; flex-direction: column; gap: 18px; }
-    .hero-portrait { min-height: 300px; }
+    .hero-portrait {
+        width: 100%;
+        min-height: 300px;
+        margin-top: 8px;
+    }
+    .hero-portrait img {
+        left: 50%;
+        width: min(100%, 390px);
+        object-position: 50% 100%;
+        transform: translateX(-50%);
+    }
     .about-photo-stack { height: 390px; }
     .project-grid,
     .certification-grid { grid-template-columns: 1fr; }
-    .entry-image { height: 230px; }
+    .entry-image {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 10;
+    }
     .subsection-heading { margin-top: 76px; }
     .skills-track { animation-duration: 28s; }
+    .skills-carousel { touch-action: pan-y; }
+    .certification-grid.is-carousel {
+        grid-auto-columns: minmax(250px, 82vw);
+        padding-bottom: 22px;
+    }
+    .about-photo-stack {
+        width: min(100%, 360px);
+        height: min(390px, 105vw);
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
