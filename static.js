@@ -2,6 +2,9 @@ const pageLoader = document.querySelector("#page-loader");
 const photoModal = document.querySelector("#photo-modal");
 const photoModalImage = document.querySelector("#photo-modal-image");
 const themeToggle = document.querySelector("#theme-toggle");
+const menuToggle = document.querySelector("#menu-toggle");
+const nav = document.querySelector("nav");
+const scrollProgress = document.querySelector("#scroll-progress");
 
 const updateThemeToggle = () => {
     if (!themeToggle) return;
@@ -15,6 +18,44 @@ themeToggle?.addEventListener("click", () => {
     const isLightTheme = document.documentElement.classList.toggle("light-theme");
     localStorage.setItem("portfolio-theme", isLightTheme ? "light" : "dark");
     updateThemeToggle();
+
+    menuToggle?.addEventListener("click", () => {
+        const isOpen = nav?.classList.toggle("menu-open") || false;
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+        menuToggle.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
+    });
+
+    document.querySelectorAll(".nav-links a").forEach((link) => {
+        link.addEventListener("click", () => {
+            nav?.classList.remove("menu-open");
+            menuToggle?.setAttribute("aria-expanded", "false");
+            menuToggle?.setAttribute("aria-label", "Open navigation menu");
+        });
+    });
+
+    const updateScrollState = () => {
+        const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = scrollableHeight > 0 ? (window.scrollY / scrollableHeight) * 100 : 0;
+        scrollProgress?.style.setProperty("--scroll-progress", `${progress}%`);
+        nav?.classList.toggle("is-scrolled", window.scrollY > 24);
+    };
+
+    window.addEventListener("scroll", updateScrollState, { passive: true });
+    updateScrollState();
+
+    const sectionLinks = [...document.querySelectorAll(".nav-links a")];
+    const sections = sectionLinks
+        .map((link) => document.querySelector(link.getAttribute("href")))
+        .filter(Boolean);
+    if ("IntersectionObserver" in window) {
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                sectionLinks.forEach((link) => link.classList.toggle("is-active", link.getAttribute("href") === `#${entry.target.id}`));
+            });
+        }, { rootMargin: "-35% 0px -55% 0px" });
+        sections.forEach((section) => sectionObserver.observe(section));
+    }
 });
 
 updateThemeToggle();
@@ -151,6 +192,22 @@ const setupCertificationCarousel = () => {
 };
 
 setupCertificationCarousel();
+
+if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    document.querySelectorAll(".project-card").forEach((card) => {
+        card.addEventListener("pointermove", (event) => {
+            const bounds = card.getBoundingClientRect();
+            const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+            const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+            card.style.setProperty("--tilt-x", `${y * -3}deg`);
+            card.style.setProperty("--tilt-y", `${x * 3}deg`);
+        });
+        card.addEventListener("pointerleave", () => {
+            card.style.setProperty("--tilt-x", "0deg");
+            card.style.setProperty("--tilt-y", "0deg");
+        });
+    });
+}
 
 const revealItems = document.querySelectorAll("main > section:not(#home), .project-card, .certification-card");
 if (!("IntersectionObserver" in window)) {
