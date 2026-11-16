@@ -1,301 +1,112 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Wee</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <script>
-        if (localStorage.getItem("portfolio-theme") === "light") {
-            document.documentElement.classList.add("light-theme");
-        }
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Juan Miguel Wee — Computer Engineering graduate building a foundation in networking and working toward cybersecurity.">
+  <title>Juan Miguel Wee | Networking & Cybersecurity Journey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-    <div class="page-loader" id="page-loader" aria-label="Loading portfolio">
-        <div class="loader-mark">MW</div>
-        <div class="loader-line"><span></span></div>
-    </div>
-
-    <nav>
-        <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
-        <a class="logo" href="#home" aria-label="My Portfolio home">
-            <span class="logo-mark" aria-hidden="true">MW</span>
-            <span>MY PORTFOLIO</span>
-        </a>
-
-        <div class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#projects">Projects</a>
-            <a href="#skills">Skills</a>
-            <a href="#contact">Contact</a>
-        </div>
-        <a class="nav-shop" href="https://wee-ddw.github.io/wee_create/" target="_blank" rel="noopener noreferrer">Visit Shop <span aria-hidden="true">↗</span></a>
-        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light mode" aria-pressed="false" title="Switch to light mode">
-            <span class="theme-icon" aria-hidden="true">☀</span>
-        </button>
-        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false">
-            <span></span><span></span>
-        </button>
+  <div class="page-loader" id="page-loader"><span>MW</span><i></i></div>
+  <header class="site-header" id="site-header">
+    <a class="brand" href="#home" aria-label="Juan Miguel Wee home"><span>MW</span><b>JUAN MIGUEL WEE</b></a>
+    <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+    <nav id="primary-nav" aria-label="Primary navigation">
+      <a href="#about">About</a><a href="#journey">Journey</a><a href="#certifications">Credentials</a><a href="#education">Education</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
     </nav>
-
-
-    <main>
-
-        <section id="home" class="hero">
-            <div class="hero-name" aria-hidden="true">MIGUEL WEE</div>
-            <div class="three-scene" id="three-scene" aria-hidden="true"></div>
-            <div class="hero-intro">
-                <p class="subtitle">COMPUTER ENGINEERING GRADUATE</p>
-                <p class="hero-script">Hello, I'm</p>
-                <h1>Juan&nbsp;Miguel<br>Wee</h1>
-                <p class="hero-role">VIBECODER<br>TECHNOLOGY ENTHUSIAST</p>
-                <p class="description">Building thoughtful hardware and software experiences with a practical engineering mindset.</p>
-                <div class="hero-actions">
-                    <a href="#projects" class="button">View My Projects <span aria-hidden="true">↗</span></a>
-                    <a href="#about" class="text-link">Explore my background <span aria-hidden="true">↓</span></a>
-                </div>
-            </div>
-
-            <div class="hero-portrait" aria-label="Portrait image area for Miguel Wee">
-                <img src="assets/profile-image.png" alt="Miguel Wee" onerror="this.hidden = true">
-            </div>
-
-            <div class="hero-stats">
-                <div><strong>01</strong><span>ENGINEERING<br>GRADUATE</span></div>
-                <div><strong>09+</strong><span>CORE<br>SKILLS</span></div>
-                <div><strong>∞</strong><span>DRIVE TO<br>LEARN</span></div>
-            </div>
-
-        </section>
-
-
-        <section id="about">
-
-            <p class="section-label">01 — ABOUT</p>
-
-            <h2>About Me</h2>
-
-            <div class="about-content">
-                <p class="about-text">
-                   I’m a Bachelor of Science in Computer Engineering graduate at the beginning of my journey as a developer.
-                    I believe every challenge is an opportunity to learn, build, and improve. With a strong technical foundation 
-                    and a curiosity for technology, I’m eager to turn ideas into practical solutions and grow into a developer whose work creates meaningful impact.
-                </p>
-
-                <div class="about-photo-panel">
-                    <div class="about-photo-stack has-photos" id="about-photo-stack" aria-label="About me photo gallery">
-                        <img src="assets/aboutme/Screenshot%202026-10-01%20001920.png" alt="Miguel Wee at a computer engineering activity" style="--photo-rotation: -7deg; --photo-x: 0px; --photo-y: 0px; --photo-delay: 0ms;">
-                        <img src="assets/aboutme/Screenshot%202026-10-01%20001936.png" alt="Miguel Wee working on a technology project" style="--photo-rotation: 6deg; --photo-x: 9px; --photo-y: 5px; --photo-delay: 60ms;">
-                        <img src="assets/aboutme/Screenshot%202026-10-01%20001943.png" alt="Miguel Wee during a project activity" style="--photo-rotation: -3deg; --photo-x: 18px; --photo-y: 10px; --photo-delay: 120ms;">
-                        <img src="assets/aboutme/Screenshot%202026-10-01%20001948.png" alt="Miguel Wee with a completed technology project" style="--photo-rotation: 4deg; --photo-x: 27px; --photo-y: 15px; --photo-delay: 180ms;">
-                    </div>
-                </div>
-            </div>
-
-            <div class="subsection-heading">
-                <div>
-                    <p class="section-label">CERTIFICATIONS</p>
-                    <h3>Learning Milestones</h3>
-                </div>
-            </div>
-
-            <div class="certification-grid" id="certification-grid">
-                <article class="certification-card static-entry">
-                    <img class="entry-image" src="assets/certificates/java.png" alt="Oracle Java Fundamentals certificate">
-                    <div class="entry-content"><time datetime="2023-06-24">June 24, 2023</time><h3>Oracle Java Fundamentals</h3><p>Java Fundamentals</p></div>
-                </article>
-                <article class="certification-card static-entry">
-                    <img class="entry-image" src="assets/certificates/redhat.png" alt="Red Hat certificate">
-                    <div class="entry-content"><time datetime="2025-09-03">September 3, 2025</time><h3>Red Hat</h3><p>Red Hat System Administration I (RH124 - RHA) - Ver.9.3</p></div>
-                </article>
-                <article class="certification-card static-entry">
-                    <img class="entry-image" src="assets/certificates/AI%20asean.png" alt="AI Ready ASEAN certificate">
-                    <div class="entry-content"><time datetime="2025-10-25">October 25, 2025</time><h3>AI Ready ASEAN</h3><p>AI Ready ASEAN Hour of Code Training</p></div>
-                </article>
-                <article class="certification-card static-entry">
-                    <img class="entry-image" src="assets/certificates/aws.png" alt="AWS Academy certificate">
-                    <div class="entry-content"><time datetime="2025-11-08">November 8, 2025</time><h3>AWS Academy</h3><p>AWS Academy Graduate - AWS Cloud Foundations</p></div>
-                </article>
-                <article class="certification-card static-entry">
-                    <img class="entry-image" src="assets/certificates/Screenshot%202026-10-10%20225822.png" alt="EC-Council Ethical Hacking Essentials certificate">
-                    <div class="entry-content"><time datetime="2025-12-10">December 10, 2025</time><h3>EC-Council</h3><p>Ethical Hacking Essentials (EHE)</p></div>
-                </article>
-                <article class="certification-card static-entry">
-                    <img class="entry-image" src="assets/certificates/spm.jpg" alt="S.P. Madrid certificate">
-                    <div class="entry-content"><time datetime="2026-04-21">April 21, 2026</time><h3>S.P. Madrid</h3><p>Certificate of Completion, 300 hours</p></div>
-                </article>
-                <article class="certification-card static-entry">
-                    <img class="entry-image" src="assets/certificates/Comptia.png" alt="CompTIA AI Essentials certificate">
-                    <div class="entry-content"><time datetime="2026-10-10">October 10, 2026</time><h3>CompTIA</h3><p>Competency in AI Essentials</p></div>
-                </article>
-                <article class="certification-card static-entry">
-                    <img class="entry-image" src="assets/certificates/DICT.png" alt="Department of Information and Communications Technology information security certificate">
-                    <div class="entry-content"><time datetime="2026-08-08">August 8, 2026</time><h3>Department of Information and Communications Technology</h3><p>Introduction to Information Security Best Practices</p></div>
-                </article>
-            </div>
-            <div class="subsection-heading education-heading">
-                <div>
-                    <p class="section-label">EDUCATION</p>
-                    <h3>Educational Background</h3>
-                </div>
-            </div>
-
-            <div class="project-grid education-grid" id="education-grid">
-                <article class="project-card static-entry">
-                    <img class="entry-image" src="assets/school3.jpg" alt="La Consolacion School Balagtas">
-                    <div class="entry-content"><time datetime="2020-03-20">March 20, 2020</time><h3>La Consolacion School Balagtas</h3><p>High School</p><span class="education-honor" style="--badge-color: #fbbf24">★ C.A.T Award</span><span class="education-honor" style="--badge-color: #14b8a6">★ SCB Award</span></div>
-                </article>
-                <article class="project-card static-entry">
-                    <img class="entry-image" src="assets/school2.jpg" alt="La Consolacion University Philippines">
-                    <div class="entry-content"><time datetime="2022-06-15">June 15, 2022</time><h3>La Consolacion University Philippines</h3><p>STEM</p><span class="education-honor" style="--badge-color: #fbbf24">★ With Honors</span><span class="education-honor" style="--badge-color: #39ff14">★ Loyalty Award</span></div>
-                </article>
-                <article class="project-card static-entry">
-                    <img class="entry-image" src="assets/school1.jpg" alt="STI College Balagtas">
-                    <div class="entry-content"><time datetime="2026-06-23">June 23, 2026</time><h3>STI College Balagtas</h3><p>Bachelor of Science in Computer Engineering</p><span class="education-honor" style="--badge-color: #fbbf24">★ Cum Laude</span><span class="education-honor" style="--badge-color: #22c55e">★ Best Thesis</span><span class="education-honor" style="--badge-color: #14b8a6">★ Student Achievement Awardee</span><span class="education-honor" style="--badge-color: #ef4444">★ Student Service Awardee</span></div>
-                </article>
-            </div>
-
-        </section>
-
-
-        <section id="projects">
-
-            <p class="section-label">02 — PROJECTS</p>
-
-            <div class="section-heading">
-                <h2>Selected Projects</h2>
-            </div>
-
-            <div class="project-grid" id="project-grid">
-                <article class="project-card static-entry">
-                    <img class="entry-image" src="assets/workexp/20250529_091300.jpg" alt="Robotics line follower robot">
-                    <div class="entry-content"><span class="project-category">ROBOTICS / EMBEDDED</span><time datetime="2025-05-29">May 29, 2025</time><h3>Robotics Line Follower Robot</h3><p>Line Follower Robot using Arduino Uno</p><span class="entry-action">View project <span aria-hidden="true">↗</span></span></div>
-                </article>
-                <article class="project-card static-entry">
-                    <img class="entry-image" src="assets/workexp/FB_IMG_1761128781280.jpg" alt="Robotics obstacle avoidance robot">
-                    <div class="entry-content"><span class="project-category">ROBOTICS / EMBEDDED</span><time datetime="2025-08-21">August 21, 2025</time><h3>Robotics Obstacle Avoidance Robot</h3><p>Obstacle Avoidance Robot using Arduino Uno</p><span class="entry-action">View project <span aria-hidden="true">↗</span></span></div>
-                </article>
-                <article class="project-card static-entry">
-                    <img class="entry-image" src="assets/workexp/20251126_113024.jpg" alt="ATLAS thesis project presentation">
-                    <div class="entry-content"><span class="project-category">THESIS / HARDWARE</span><time datetime="2025-11-17">November 17, 2025</time><h3>Thesis Project</h3><p>ATLAS - Academic Technology Locator Attendance System for Educators</p><span class="entry-action">View project <span aria-hidden="true">↗</span></span></div>
-                </article>
-                <article class="project-card static-entry">
-                    <img class="entry-image" src="assets/workexp/20260413_130439.jpg" alt="S.P. Madrid internship">
-                    <div class="entry-content"><span class="project-category">INTERNSHIP / SOFTWARE</span><time datetime="2026-04-21">April 21, 2026</time><h3>S.P. Madrid</h3><p>Help built functions and features in the Legal Management System</p><span class="entry-action">View project <span aria-hidden="true">↗</span></span></div>
-                </article>
-                <article class="project-card static-entry">
-                    <img class="entry-image" src="assets/workexp/dsa.png" alt="E-portfolio website">
-                    <div class="entry-content"><span class="project-category">WEB / PERSONAL</span><time datetime="2026-08-20">August 20, 2026</time><h3>E-portfolio</h3><p>Created this via vibecoding</p><span class="entry-action">View project <span aria-hidden="true">↗</span></span></div>
-                </article>
-            </div>
-
-        </section>
-
-
-        <section id="skills">
-
-            <p class="section-label">03 — SKILLS</p>
-
-            <h2>Technologies</h2>
-
-            <div class="skills-carousel" aria-label="Technology skills">
-                <div class="skills-track">
-                    <div class="skills-set">
-                        <div class="skill-icon"><img src="assets/skill_icons/python.png" alt="Python"></div>
-                        <div class="skill-icon"><img src="assets/skill_icons/java.png" alt="Java"></div>
-                        <div class="skill-icon"><img src="assets/skill_icons/bambulablogo.webp" alt="Bambu Lab"></div>
-                        <div class="skill-icon"><img src="assets/skill_icons/creality.png" alt="Creality"></div>
-                        <div class="skill-icon"><img src="assets/skill_icons/Blender_logo_no_text.svg.webp" alt="Blender"></div>
-                        <div class="skill-icon"><img src="assets/skill_icons/Visual_Studio_Code_1.35_icon.svg.webp" alt="Visual Studio Code"></div>
-                        <div class="skill-icon"><img src="assets/skill_icons/Cursor_logo.svg.webp" alt="Cursor"></div>
-                        <div class="skill-icon"><img src="assets/skill_icons/ChatGPT_logo.svg.webp" alt="ChatGPT"></div>
-                        <div class="skill-icon"><img src="assets/skill_icons/Claude_AI_symbol.svg.webp" alt="Claude"></div>
-                        <div class="skill-icon"><img src="assets/skill_icons/Google_Gemini_icon_2025.svg.webp" alt="Google Gemini"></div>
-                        <div class="skill-icon"><img src="assets/skill_icons/structure.png" alt="Data structures"></div>
-                        <div class="skill-icon"><img src="assets/skill_icons/Screenshot 2026-08-20 161017.png" alt="Technology tool"></div>
-                    </div>
-                    <div class="skills-set" aria-hidden="true">
-                        <div class="skill-icon"><img src="assets/skill_icons/python.png" alt=""></div>
-                        <div class="skill-icon"><img src="assets/skill_icons/java.png" alt=""></div>
-                        <div class="skill-icon"><img src="assets/skill_icons/bambulablogo.webp" alt=""></div>
-                        <div class="skill-icon"><img src="assets/skill_icons/creality.png" alt=""></div>
-                        <div class="skill-icon"><img src="assets/skill_icons/Blender_logo_no_text.svg.webp" alt=""></div>
-                        <div class="skill-icon"><img src="assets/skill_icons/Visual_Studio_Code_1.35_icon.svg.webp" alt=""></div>
-                        <div class="skill-icon"><img src="assets/skill_icons/Cursor_logo.svg.webp" alt=""></div>
-                        <div class="skill-icon"><img src="assets/skill_icons/ChatGPT_logo.svg.webp" alt=""></div>
-                        <div class="skill-icon"><img src="assets/skill_icons/Claude_AI_symbol.svg.webp" alt=""></div>
-                        <div class="skill-icon"><img src="assets/skill_icons/Google_Gemini_icon_2025.svg.webp" alt=""></div>
-                        <div class="skill-icon"><img src="assets/skill_icons/structure.png" alt=""></div>
-                        <div class="skill-icon"><img src="assets/skill_icons/Screenshot 2026-08-20 161017.png" alt=""></div>
-                    </div>
-                </div>
-            </div>
-
-        </section>
-
-
-        <section id="contact">
-
-            <p class="section-label">04 — CONTACT</p>
-
-            <h2>Let's Connect</h2>
-
-            <p>
-                You can find me through my professional and
-                project profiles.
-            </p>
-
-            <div class="social-links" aria-label="Social media links">
-                <a class="social-bubble" href="https://www.facebook.com/share/1DDf7srFk5/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">f</a>
-                <a class="social-bubble" href="https://www.instagram.com/siweetoh?igsh=MXhoZ255NmxraGVnbA==" target="_blank" rel="noopener noreferrer" aria-label="Instagram">ig</a>
-                <a class="social-bubble" href="#" aria-label="LinkedIn">in</a>
-                <a class="social-bubble" href="https://www.tiktok.com/@nobakuma?_r=1&amp;_t=ZS-992N6b8rFVU" target="_blank" rel="noopener noreferrer" aria-label="TikTok">t</a>
-            </div>
-
-            <div class="contact-details">
-                <a href="mailto:luegimwee@gmail.com">luegimwee@gmail.com</a>
-                <a href="tel:+639291174616">09291174616</a>
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <footer>
-        <p>© 2026 My Portfolio</p>
-    </footer>
-
-    <div class="modal photo-modal" id="photo-modal" hidden>
-        <div class="modal-backdrop" data-close-photo-modal></div>
-        <div class="photo-modal-content" role="dialog" aria-modal="true" aria-label="Enlarged about me photo">
-            <button class="close-button" type="button" data-close-photo-modal aria-label="Close photo">×</button>
-            <img id="photo-modal-image" alt="Enlarged about me photo">
-        </div>
+    <div class="header-actions">
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light mode" aria-pressed="false">◐</button>
+      <a class="header-link" href="https://wee-ddw.github.io/wee_create/" target="_blank" rel="noopener noreferrer">Shop ↗</a>
     </div>
+  </header>
 
+  <main>
+    <section class="hero section-wrap" id="home">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="status-dot"></span> COMPUTER ENGINEERING GRADUATE</p>
+        <p class="hero-greeting">Hello, I’m</p>
+        <h1><span>Juan Miguel</span><span>Wee</span></h1>
+        <p class="hero-role">VIBECODER<br>TECHNOLOGY ENTHUSIAST</p>
+        <p class="hero-lead">Building thoughtful hardware and software experiences with a practical engineering mindset.</p>
+        <div class="hero-actions"><a class="button button-blue" href="#projects">View my projects <span>↗</span></a><a class="button button-quiet" href="#about">Explore my background <span>↓</span></a></div>
+      </div>
+      <div class="hero-stage">
+        <div class="hero-watermark" aria-hidden="true">MIGUEL<br>WEE</div>
+        <div class="hero-waves" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="portrait-card">
+          <img src="assets/profile-image.png" alt="Juan Miguel Wee">
+        </div>
+        <div class="hero-stats" aria-label="Portfolio highlights">
+          <div><strong>01</strong><span>ENGINEERING<br>GRADUATE</span></div>
+          <div><strong>09+</strong><span>CORE<br>SKILLS</span></div>
+          <div><strong>∞</strong><span>DRIVE TO<br>LEARN</span></div>
+        </div>
+      </div>
+    </section>
 
-    <script type="importmap">
-        {
-            "imports": {
-                "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
-                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
-            }
-        }
-    </script>
-    <script type="module" src="three-scene.js"></script>
-    <script src="static.js"></script>
+    <section class="section-wrap intro-strip" id="about">
+      <div class="about-heading"><p class="eyebrow">01 — ABOUT ME</p><h2>Engineering background.<br><em>Infrastructure ahead.</em></h2><div class="about-photos" aria-label="Rotating photos from my engineering journey"><img class="is-active" src="assets/aboutme/Screenshot%202026-10-01%20001920.png" alt="Juan Miguel Wee during a computer engineering activity"><img src="assets/aboutme/Screenshot%202026-10-01%20001936.png" alt="Juan Miguel Wee working on a technology project"><img src="assets/aboutme/Screenshot%202026-10-01%20001943.png" alt="Juan Miguel Wee during a project activity"><img src="assets/aboutme/Screenshot%202026-10-01%20001948.png" alt="Juan Miguel Wee with a completed technology project"><span class="about-photo-index" aria-hidden="true">01 / 04</span></div></div>
+      <div class="about-copy"><p class="about-lead">I’m a <strong>Computer Engineering graduate</strong> with a strong interest in <strong>computer systems, networking,</strong> and <strong>information security.</strong></p><p>My engineering background introduced me to <strong>hardware integration, programming, embedded systems,</strong> and software development. I’m now expanding my knowledge toward <strong>network engineering and cybersecurity,</strong> focusing on how systems communicate, how infrastructure is managed, and how digital environments can be secured.</p><p>I believe technical growth comes from <strong>continuous learning, practical experimentation,</strong> and solving real-world problems. This portfolio serves as a record of that journey.</p></div>
+    </section>
 
+    <section class="section-wrap journey-section" id="journey">
+      <div class="section-heading"><div><p class="eyebrow">02 — ROADMAP</p><h2>From systems<br><em>to security.</em></h2></div><p class="section-note">A living map of the skills I have built, the concepts I am learning, and the direction I am taking next.</p></div>
+      <div class="roadmap" id="roadmap"></div>
+    </section>
+
+    <section class="section-wrap credentials-section" id="certifications">
+      <div class="section-heading"><div><p class="eyebrow">03 — CREDENTIALS</p><h2>Learning, <em>documented.</em></h2></div><p class="section-note">Technical certificates, training milestones, and professional experience documentation.</p></div>
+      <div class="filter-row" id="certificate-filters" aria-label="Filter certificates"></div>
+      <div class="certificate-grid" id="certificate-grid"></div>
+      <div class="targets"><div><p class="eyebrow">NEXT MILESTONES</p><h3>Certifications I’m<br><em>working toward.</em></h3></div><div class="target-list" id="target-list"></div></div>
+    </section>
+
+    <section class="section-wrap education-section" id="education">
+      <div class="section-heading"><div><p class="eyebrow">04 — EDUCATION</p><h2>Academic<br><em>background.</em></h2></div><p class="section-note">The schools, experiences, and achievements that shaped my foundation in technology and computer engineering.</p></div>
+      <div class="education-grid">
+        <article class="education-card">
+          <img src="assets/school3.jpg" alt="La Consolacion School Balagtas campus">
+          <div class="education-card-body"><time datetime="2020-03-20">MARCH 20, 2020</time><h3>La Consolacion School Balagtas</h3><p>High School</p><div class="education-badges"><span class="badge-gold">★ C.A.T AWARD</span><span class="badge-teal">★ SCB AWARD</span></div></div>
+        </article>
+        <article class="education-card">
+          <img src="assets/school2.jpg" alt="La Consolacion University Philippines campus">
+          <div class="education-card-body"><time datetime="2022-06-15">JUNE 15, 2022</time><h3>La Consolacion University Philippines</h3><p>STEM</p><div class="education-badges"><span class="badge-gold">★ WITH HONORS</span><span class="badge-green">★ LOYALTY AWARD</span></div></div>
+        </article>
+        <article class="education-card">
+          <img src="assets/school1.jpg" alt="STI College Balagtas campus">
+          <div class="education-card-body"><time datetime="2026-06-23">JUNE 23, 2026</time><h3>STI College Balagtas</h3><p>Bachelor of Science in Computer Engineering</p><div class="education-badges"><span class="badge-gold">★ CUM LAUDE</span><span class="badge-green">★ BEST THESIS</span><span class="badge-teal">★ STUDENT ACHIEVEMENT AWARDEE</span><span class="badge-red">★ STUDENT SERVICE AWARDEE</span></div></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-wrap projects-section" id="projects">
+      <div class="section-heading"><div><p class="eyebrow">05 — SELECTED WORK</p><h2>Built to understand<br><em>how things work.</em></h2></div><p class="section-note">Projects that connect hardware, software, and real-world problem solving.</p></div>
+      <div class="project-list" id="project-list"></div>
+    </section>
+
+    <section class="section-wrap skills-section" id="skills">
+      <div class="section-heading"><div><p class="eyebrow">06 — TOOLKIT</p><h2>Where I am<br><em>right now.</em></h2></div><p class="section-note">No arbitrary percentages. These labels reflect my current experience and learning status.</p></div>
+      <div class="skill-columns" id="skill-columns"></div>
+    </section>
+
+    <section class="section-wrap lab-section" id="lab">
+      <div class="section-heading"><div><p class="eyebrow">07 — TECHNICAL JOURNAL</p><h2>Learning <em>lab.</em></h2></div><p class="section-note">A place for practical notes, experiments, and evidence as the journey develops.</p></div>
+      <div class="lab-empty"><span>LAB / 001</span><h3>New experiments will appear here.</h3><p>This section is ready for Packet Tracer topologies, subnetting notes, Linux exercises, and other documented practice. Nothing is presented as completed until it has actually been done.</p></div>
+    </section>
+
+    <section class="section-wrap contact-section" id="contact">
+      <p class="eyebrow">08 — CONTACT</p><h2>Let’s build a better<br><em>connection.</em></h2><p>If you’d like to talk about a project, an opportunity, or the path from engineering into infrastructure, you can reach me here.</p>
+      <div class="contact-links"><a href="mailto:luegimwee@gmail.com">luegimwee@gmail.com <span>↗</span></a><a href="https://github.com/wee-ddw" target="_blank" rel="noopener noreferrer">GitHub <span>↗</span></a><a href="https://www.facebook.com/share/1DDf7srFk5/" target="_blank" rel="noopener noreferrer">Facebook <span>↗</span></a><a href="https://www.instagram.com/siweetoh" target="_blank" rel="noopener noreferrer">Instagram <span>↗</span></a></div>
+    </section>
+  </main>
+  <footer class="section-wrap"><span>© 2026 JUAN MIGUEL WEE</span><span>COMPUTER ENGINEERING → NETWORKING → CYBERSECURITY</span><a href="#home">Back to top ↑</a></footer>
+
+  <dialog class="detail-dialog" id="detail-dialog"><button class="dialog-close" type="button" aria-label="Close dialog">×</button><div id="dialog-content"></div></dialog>
+  <dialog class="image-dialog" id="image-dialog"><button class="dialog-close" type="button" aria-label="Close image">×</button><img id="dialog-image" alt="" hidden></dialog>
+  <script src="static.js"></script>
 </body>
-
 </html>

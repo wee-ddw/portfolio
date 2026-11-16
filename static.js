@@ -1,237 +1,57 @@
-const pageLoader = document.querySelector("#page-loader");
-const photoModal = document.querySelector("#photo-modal");
-const photoModalImage = document.querySelector("#photo-modal-image");
-const themeToggle = document.querySelector("#theme-toggle");
-const menuToggle = document.querySelector("#menu-toggle");
-const nav = document.querySelector("nav");
-const scrollProgress = document.querySelector("#scroll-progress");
+const roadmap = [
+  {number:"01",title:"Computer Engineering foundation",status:"Completed",className:"completed",topics:["Computer hardware","Programming fundamentals","Operating systems","Troubleshooting"],objectives:"The engineering base behind my work with hardware, software, and connected devices.",skills:["Computer systems","Embedded programming","Practical problem solving"],certificates:["B.S. Computer Engineering"],projects:["ATLAS","Robotics projects"]},
+  {number:"02",title:"Networking fundamentals",status:"Currently learning",topics:["LAN / WAN","IPv4 and IPv6","Subnetting","DNS and DHCP","OSI and TCP/IP"],objectives:"Building a clear mental model of how devices communicate and how networks are addressed.",skills:["Network fundamentals","IP addressing","TCP / UDP","MAC addresses"],certificates:["Cisco CCST Networking (target)"],projects:["Learning Lab: upcoming network notes"]},
+  {number:"03",title:"Network engineering",status:"Upcoming",topics:["Packet Tracer","Switching and routing","VLANs","NAT and ACLs","Wireshark"],objectives:"Moving from concepts into configuration, troubleshooting, and observing network behavior.",skills:["Cisco labs","Routing concepts","Traffic analysis"],certificates:["Cisco CCNA (target)"],projects:["Packet Tracer lab (planned)"]},
+  {number:"04",title:"Systems and server administration",status:"Upcoming",topics:["Linux administration","Windows administration","Permissions","Monitoring","Python scripting"],objectives:"Understanding the systems that networks support and the routines that keep them reliable.",skills:["Linux","System administration","Automation basics"],certificates:["Red Hat System Administration I"],projects:["Systems practice (planned)"]},
+  {number:"05",title:"Network security",status:"Future goal",topics:["Firewalls","VPN fundamentals","Traffic analysis","Vulnerability management","Encryption"],objectives:"Learning how access is controlled, traffic is protected, and weaknesses are managed.",skills:["Security fundamentals","Authentication","Authorization"],certificates:["CompTIA Security+ (target)"],projects:["Security lab (planned)"]},
+  {number:"06",title:"Cybersecurity",status:"Future goal",topics:["SOC operations","SIEM fundamentals","Threat detection","Incident response","Defensive security"],objectives:"A longer-term direction built on networking, systems, and disciplined practice.",skills:["Security monitoring","Auditing","Incident response"],certificates:["Cisco CCST Cybersecurity (target)"],projects:["Documented labs (future)"]},
+  {number:"07",title:"Professional specialization",status:"Long-term goal",topics:["SOC Analyst","Network Security Engineer","Security Engineer","Cybersecurity Analyst"],objectives:"Exploring where a strong infrastructure foundation can lead professionally.",skills:["Continuous learning","Technical communication"],certificates:["To be determined"],projects:["To be determined"]}
+];
+const certificates = [
+  {org:"Oracle",title:"Java Fundamentals",date:"June 24, 2023",iso:"2023-06-24",category:"Systems",image:"assets/certificates/java.png"},
+  {org:"Red Hat",title:"System Administration I · RH124 - RHA, Version 9.3",date:"September 3, 2025",iso:"2025-09-03",category:"Systems",image:"assets/certificates/redhat.png"},
+  {org:"AI Ready ASEAN",title:"Hour of Code Training",date:"October 25, 2025",iso:"2025-10-25",category:"Other",image:"assets/certificates/AI%20asean.png"},
+  {org:"AWS Academy",title:"AWS Cloud Foundations",date:"November 8, 2025",iso:"2025-11-08",category:"Cloud",image:"assets/certificates/aws.png"},
+  {org:"EC-Council",title:"Ethical Hacking Essentials (EHE)",date:"December 10, 2025",iso:"2025-12-10",category:"Cybersecurity",image:"assets/certificates/Screenshot%202026-10-10%20225822.png"},
+  {org:"DICT",title:"Introduction to Information Security Best Practices",date:"August 8, 2026",iso:"2026-08-08",category:"Cybersecurity",image:"assets/certificates/DICT.png"},
+  {org:"CompTIA",title:"Competency in AI Essentials",date:"October 10, 2026",iso:"2026-10-10",category:"Other",image:"assets/certificates/Comptia.png"},
+  {org:"S.P. Madrid & Associates Law Firm",title:"300-Hour On-the-Job Training Completion",date:"April 28, 2026",iso:"2026-04-28",category:"Experience",image:"assets/certificates/spm.jpg"}
+];
+const targets = ["Cisco CCST Networking","Cisco CCNA","Cisco CCST Cybersecurity","CompTIA Security+"];
+const projects = [
+  {category:"THESIS / CONNECTED DEVICES",title:"ATLAS — Academic Technology Locator Attendance System",description:"A Raspberry Pi kiosk application for teacher location monitoring, connecting RFID and ESP32 hardware to a Firebase Realtime Database.",image:"assets/workexp/20251126_113024.jpg",tags:["Python","Tkinter","Raspberry Pi","RFID","ESP32","Firebase"],detail:"ATLAS brought together hardware integration, a network-connected kiosk, and a practical system for educators. It gave me experience thinking across devices, software, and data."},
+  {category:"ROBOTICS / EMBEDDED",title:"Line Follower Robot",description:"An Arduino Uno robot built around sensor integration, embedded programming, and hands-on hardware troubleshooting.",image:"assets/workexp/20250529_091300.jpg",tags:["Arduino Uno","Sensors","Embedded"],detail:"A practical exercise in reading sensors, controlling hardware, and iterating when a physical system does not behave as expected."},
+  {category:"ROBOTICS / EMBEDDED",title:"Obstacle Avoidance Robot",description:"An Arduino Uno project exploring obstacle detection and the control logic needed for autonomous movement.",image:"assets/workexp/FB_IMG_1761128781280.jpg",tags:["Arduino Uno","Detection","Control"],detail:"This project strengthened my understanding of embedded systems and the relationship between input, decision-making, and motor output."},
+  {category:"INTERNSHIP / SOFTWARE",title:"Legal Management System",description:"Professional internship experience at S.P. Madrid & Associates, contributing to software functionality and feature development.",image:"assets/workexp/20260413_130439.jpg",tags:["Software development","Internship","Features"],detail:"My 300-hour internship completion is documented as professional experience. The work introduced me to contributing to a real software system and its users."},
+  {category:"WEB / PERSONAL",title:"Personal Portfolio",description:"A responsive portfolio rebuilt to document my engineering background, networking direction, and learning journey.",image:"assets/workexp/dsa.png",tags:["HTML","CSS","JavaScript"],detail:"This site is an ongoing project: a place to communicate technical work accurately and make future learning visible without overstating it."}
+];
+const skills = {Networking:[["Network fundamentals","Currently learning"],["IP addressing","Currently learning"],["TCP/IP","Currently learning"],["DNS and DHCP","Currently learning"],["Network troubleshooting","Planned"]],Systems:[["Linux","Familiar"],["Windows","Familiar"],["System administration","Familiar"],["Hardware troubleshooting","Experienced"]],Programming:[["Python","Familiar"],["Java","Familiar"],["Basic scripting","Currently learning"]],"Infrastructure & security":[["Raspberry Pi","Experienced"],["ESP32","Familiar"],["RFID","Familiar"],["Firebase","Familiar"],["Information security fundamentals","Currently learning"]],Tools:[["Visual Studio Code","Experienced"],["Git and GitHub","Familiar"],["Cisco Packet Tracer","Planned"],["Wireshark","Planned"]]};
 
-const updateThemeToggle = () => {
-    if (!themeToggle) return;
-    const isLightTheme = document.documentElement.classList.contains("light-theme");
-    themeToggle.setAttribute("aria-label", isLightTheme ? "Switch to dark mode" : "Switch to light mode");
-    themeToggle.setAttribute("title", isLightTheme ? "Switch to dark mode" : "Switch to light mode");
-    themeToggle.setAttribute("aria-pressed", String(isLightTheme));
-};
-
+const $ = (selector) => document.querySelector(selector);
+const themeToggle = $("#theme-toggle");
+const savedTheme = localStorage.getItem("portfolio-theme");
+if (savedTheme === "light") document.documentElement.classList.add("light-theme");
+function updateThemeToggle() {
+  if (!themeToggle) return;
+  const isLight = document.documentElement.classList.contains("light-theme");
+  themeToggle.setAttribute("aria-pressed", String(isLight));
+  themeToggle.setAttribute("aria-label", isLight ? "Switch to dark mode" : "Switch to light mode");
+}
 themeToggle?.addEventListener("click", () => {
-    const isLightTheme = document.documentElement.classList.toggle("light-theme");
-    localStorage.setItem("portfolio-theme", isLightTheme ? "light" : "dark");
-    updateThemeToggle();
+  const isLight = document.documentElement.classList.toggle("light-theme");
+  localStorage.setItem("portfolio-theme", isLight ? "light" : "dark");
+  updateThemeToggle();
 });
-
 updateThemeToggle();
-
-menuToggle?.addEventListener("click", () => {
-    const isOpen = nav?.classList.toggle("menu-open") || false;
-    menuToggle.setAttribute("aria-expanded", String(isOpen));
-    menuToggle.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
-});
-
-document.querySelectorAll(".nav-links a").forEach((link) => {
-    link.addEventListener("click", () => {
-        nav?.classList.remove("menu-open");
-        menuToggle?.setAttribute("aria-expanded", "false");
-        menuToggle?.setAttribute("aria-label", "Open navigation menu");
-    });
-});
-
-const updateScrollState = () => {
-    const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = scrollableHeight > 0 ? (window.scrollY / scrollableHeight) * 100 : 0;
-    scrollProgress?.style.setProperty("--scroll-progress", `${progress}%`);
-    nav?.classList.toggle("is-scrolled", window.scrollY > 24);
-};
-
-window.addEventListener("scroll", updateScrollState, { passive: true });
-updateScrollState();
-
-const sectionLinks = [...document.querySelectorAll(".nav-links a")];
-const sections = sectionLinks
-    .map((link) => document.querySelector(link.getAttribute("href")))
-    .filter(Boolean);
-if ("IntersectionObserver" in window) {
-    const sectionObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-            sectionLinks.forEach((link) => link.classList.toggle("is-active", link.getAttribute("href") === `#${entry.target.id}`));
-        });
-    }, { rootMargin: "-35% 0px -55% 0px" });
-    sections.forEach((section) => sectionObserver.observe(section));
-}
-
-const openPhotoModal = (source, label) => {
-    if (!photoModal || !photoModalImage) return;
-    photoModalImage.src = source;
-    photoModalImage.alt = label;
-    photoModal.hidden = false;
-    document.body.classList.add("modal-open");
-};
-
-const closePhotoModal = () => {
-    if (!photoModal) return;
-    photoModal.hidden = true;
-    document.body.classList.remove("modal-open");
-};
-
-const aboutPhotoStack = document.querySelector("#about-photo-stack");
-const aboutPhotos = [...document.querySelectorAll(".about-photo-stack img")];
-let activeAboutPhoto = 0;
-
-const showAboutPhoto = (index) => {
-    activeAboutPhoto = index;
-    aboutPhotos.forEach((image, photoIndex) => {
-        image.classList.toggle("is-active", photoIndex === activeAboutPhoto);
-        image.setAttribute("aria-hidden", String(photoIndex !== activeAboutPhoto));
-    });
-};
-
-aboutPhotos.forEach((image) => {
-    image.draggable = false;
-    image.addEventListener("click", () => openPhotoModal(image.currentSrc || image.src, image.alt));
-});
-
-if (aboutPhotoStack && aboutPhotos.length) {
-    showAboutPhoto(0);
-    window.setInterval(() => showAboutPhoto((activeAboutPhoto + 1) % aboutPhotos.length), 2000);
-}
-
-document.querySelectorAll(".entry-image").forEach((image) => {
-    image.addEventListener("click", () => openPhotoModal(image.currentSrc || image.src, image.alt));
-});
-
-document.querySelectorAll("[data-close-photo-modal]").forEach((element) => {
-    element.addEventListener("click", closePhotoModal);
-});
-
-document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") closePhotoModal();
-});
-
-const certificationGrid = document.querySelector("#certification-grid");
-let certificationCarouselTimer = null;
-
-const setupCertificationCarousel = () => {
-    if (!certificationGrid) return;
-    certificationGrid.classList.add("is-carousel");
-    certificationGrid.querySelectorAll(".carousel-clone").forEach((clone) => clone.remove());
-    const certificationCards = [...certificationGrid.querySelectorAll(".certification-card")];
-    const clones = certificationCards.map((card) => {
-        const clone = card.cloneNode(true);
-        clone.classList.add("carousel-clone");
-        clone.setAttribute("aria-hidden", "true");
-        clone.style.pointerEvents = "none";
-        clone.querySelectorAll("img").forEach((image) => image.setAttribute("alt", ""));
-        return clone;
-    });
-    certificationGrid.append(...clones);
-    let isDragging = false;
-    let didDrag = false;
-    let startX = 0;
-    let startScrollLeft = 0;
-    let autoScrollPosition = certificationGrid.scrollLeft;
-
-    const updateCardRotation = () => {
-        const center = certificationGrid.getBoundingClientRect().left + certificationGrid.clientWidth / 2;
-        certificationGrid.querySelectorAll(".certification-card").forEach((card) => {
-            const cardCenter = card.getBoundingClientRect().left + card.clientWidth / 2;
-            const offset = Math.max(-1, Math.min(1, (cardCenter - center) / certificationGrid.clientWidth));
-            card.style.setProperty("--carousel-rotation", `${offset * -18}deg`);
-            card.style.setProperty("--carousel-lift", `${Math.abs(offset) * 8}px`);
-        });
-    };
-
-    certificationGrid.addEventListener("pointerdown", (event) => {
-        if (event.target.closest("img")) return;
-        isDragging = true;
-        didDrag = false;
-        startX = event.clientX;
-        startScrollLeft = certificationGrid.scrollLeft;
-        autoScrollPosition = startScrollLeft;
-        certificationGrid.classList.add("is-dragging");
-        certificationGrid.setPointerCapture(event.pointerId);
-    });
-    certificationGrid.addEventListener("pointermove", (event) => {
-        if (!isDragging) return;
-        if (Math.abs(event.clientX - startX) > 8) didDrag = true;
-        certificationGrid.scrollLeft = startScrollLeft - (event.clientX - startX);
-        autoScrollPosition = certificationGrid.scrollLeft;
-        updateCardRotation();
-    });
-    const stopDragging = (event) => {
-        if (!isDragging) return;
-        isDragging = false;
-        certificationGrid.classList.remove("is-dragging");
-        if (certificationGrid.hasPointerCapture(event.pointerId)) certificationGrid.releasePointerCapture(event.pointerId);
-        updateCardRotation();
-        didDrag = false;
-    };
-    certificationGrid.addEventListener("pointerup", stopDragging);
-    certificationGrid.addEventListener("pointercancel", stopDragging);
-    certificationGrid.addEventListener("scroll", () => {
-        if (!isDragging) autoScrollPosition = certificationGrid.scrollLeft;
-        updateCardRotation();
-    }, { passive: true });
-    window.addEventListener("resize", updateCardRotation);
-
-    window.clearInterval(certificationCarouselTimer);
-    certificationCarouselTimer = window.setInterval(() => {
-        if (isDragging) return;
-        const maxScroll = certificationGrid.scrollWidth - certificationGrid.clientWidth;
-        if (maxScroll <= 0) return;
-        autoScrollPosition += 0.35;
-        const loopWidth = clones[0]?.offsetLeft || 0;
-        if (loopWidth && autoScrollPosition >= loopWidth) {
-            autoScrollPosition -= loopWidth;
-        } else if (autoScrollPosition <= 0) {
-            autoScrollPosition = 0;
-        }
-        certificationGrid.scrollLeft = autoScrollPosition;
-    }, 16);
-    updateCardRotation();
-};
-
-setupCertificationCarousel();
-
-if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    document.querySelectorAll(".project-card").forEach((card) => {
-        card.addEventListener("pointermove", (event) => {
-            const bounds = card.getBoundingClientRect();
-            const x = (event.clientX - bounds.left) / bounds.width - 0.5;
-            const y = (event.clientY - bounds.top) / bounds.height - 0.5;
-            card.style.setProperty("--tilt-x", `${y * -3}deg`);
-            card.style.setProperty("--tilt-y", `${x * 3}deg`);
-        });
-        card.addEventListener("pointerleave", () => {
-            card.style.setProperty("--tilt-x", "0deg");
-            card.style.setProperty("--tilt-y", "0deg");
-        });
-    });
-}
-
-const revealItems = document.querySelectorAll("main > section:not(#home), .project-card, .certification-card");
-if (!("IntersectionObserver" in window)) {
-    revealItems.forEach((item) => item.classList.add("is-visible"));
-} else {
-    const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-        }
-    }), { threshold: 0.12 });
-    revealItems.forEach((item, index) => {
-        item.classList.add("scroll-reveal");
-        item.style.setProperty("--reveal-delay", `${(index % 4) * 80}ms`);
-        observer.observe(item);
-    });
-
-    const revealItemsAlreadyInView = () => {
-        revealItems.forEach((item) => {
-            const bounds = item.getBoundingClientRect();
-            if (bounds.top < window.innerHeight && bounds.bottom > 0) item.classList.add("is-visible");
-        });
-    };
-    revealItemsAlreadyInView();
-}
-
-window.addEventListener("load", () => pageLoader?.classList.add("is-hidden"), { once: true });
+function renderRoadmap(){ $("#roadmap").innerHTML=roadmap.map((item,index)=>`<article class="roadmap-item ${item.className||""}" tabindex="0" data-roadmap="${index}"><span class="roadmap-number">${item.number}</span><div><div class="roadmap-title">${item.title}</div><div class="roadmap-topics">${item.topics.join(" · ")}</div></div><span class="roadmap-status">${item.status}</span><div class="roadmap-detail"><div><strong>Learning objective</strong><p>${item.objectives}</p></div><div><strong>Skills & evidence</strong><ul><li>${item.skills.join("</li><li>")}</li></ul></div><div><strong>Relevant certificates</strong><p>${item.certificates.join(" · ")}</p></div><div><strong>Practical projects</strong><p>${item.projects.join(" · ")}</p></div></div></article>`).join("");}
+function renderCertificates(filter="All"){const list=filter==="All"?certificates:certificates.filter((item)=>item.category===filter);$("#certificate-grid").innerHTML=list.map((item)=>`<article class="certificate-card" tabindex="0" data-image="${item.image}" data-title="${item.org} — ${item.title}"><img src="${item.image}" alt="${item.org} ${item.title} certificate"><div><time datetime="${item.iso}">${item.date}</time><h3>${item.org}</h3><p>${item.title}</p><small>${item.category}</small></div></article>`).join("");}
+function renderSkills(){ $("#skill-columns").innerHTML=Object.entries(skills).map(([group,items])=>`<div class="skill-group"><h3>${group}</h3><ul>${items.map(([name,status])=>`<li>${name}<span>${status}</span></li>`).join("")}</ul></div>`).join("");}
+function openDetail(title,body,tags=[]){$("#dialog-content").innerHTML=`<p class="eyebrow">PROJECT DETAIL</p><h2>${title}</h2><p>${body}</p><div class="tag-list">${tags.map((tag)=>`<span class="tag">${tag}</span>`).join("")}</div>`;$("#detail-dialog").showModal();}
+function setupAboutSlideshow(){const frame=document.querySelector(".about-photos");if(!frame)return;const photos=[...frame.querySelectorAll("img")];const indexLabel=frame.querySelector(".about-photo-index");let active=0;const showPhoto=(next)=>{active=next;photos.forEach((photo,index)=>{photo.classList.toggle("is-active",index===active);photo.setAttribute("aria-hidden",String(index!==active));});if(indexLabel)indexLabel.textContent=`${String(active+1).padStart(2,"0")} / ${String(photos.length).padStart(2,"0")}`;};showPhoto(0);if(photos.length>1&&!window.matchMedia("(prefers-reduced-motion: reduce)").matches)window.setInterval(()=>showPhoto((active+1)%photos.length),4200);}
+function init(){renderRoadmap();renderCertificates();renderSkills();$("#target-list").innerHTML=targets.map((target)=>`<div class="target"><span>Target certification</span><b>${target}</b></div>`).join("");$("#project-list").innerHTML=projects.map((project,index)=>`<article class="project-card" tabindex="0" data-project="${index}"><img src="${project.image}" alt="${project.title}"><div class="project-info"><p class="eyebrow">${project.category}</p><h3>${project.title}</h3><p>${project.description}</p><div class="tag-list">${project.tags.map((tag)=>`<span class="tag">${tag}</span>`).join("")}</div></div></article>`).join("");setupAboutSlideshow();}
+document.addEventListener("click",(event)=>{const roadmapItem=event.target.closest("[data-roadmap]");if(roadmapItem){roadmapItem.classList.toggle("open");return}const cert=event.target.closest(".certificate-card");if(cert){const image=$("#dialog-image");image.hidden=false;image.src=cert.dataset.image;image.alt=cert.dataset.title;$("#image-dialog").showModal();return}const project=event.target.closest("[data-project]");if(project){const item=projects[Number(project.dataset.project)];openDetail(item.title,item.detail,item.tags);return}if(event.target.matches(".dialog-close")){const dialog=event.target.closest("dialog");if(dialog.id==="image-dialog"){const image=$("#dialog-image");image.hidden=true;image.removeAttribute("src");image.alt="";}dialog.close();}if(event.target.matches("[data-filter]")){document.querySelectorAll("[data-filter]").forEach((button)=>button.classList.remove("active"));event.target.classList.add("active");renderCertificates(event.target.dataset.filter);}});
+$("#certificate-filters").innerHTML=["All","Networking","Cybersecurity","Systems","Cloud","Other","Experience"].map((filter,index)=>`<button type="button" data-filter="${filter}" class="${index===0?"active":""}">${filter}</button>`).join("");
+$("#menu-toggle").addEventListener("click",()=>{$("#primary-nav").classList.toggle("open");$("#menu-toggle").setAttribute("aria-expanded",$("#primary-nav").classList.contains("open"));});
+document.querySelectorAll("#primary-nav a").forEach((link)=>link.addEventListener("click",()=>$("#primary-nav").classList.remove("open")));
+if("IntersectionObserver" in window){const observer=new IntersectionObserver((entries)=>entries.forEach((entry)=>{if(entry.isIntersecting)entry.target.classList.add("active")}),{rootMargin:"-35% 0px -55%"});document.querySelectorAll("main section").forEach((section)=>observer.observe(section));}
+init();window.addEventListener("load",()=>$("#page-loader").classList.add("is-hidden"),{once:true});
